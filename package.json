@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out --repo https://github.com/puni7777777/Portfolio.git"
   },
   "dependencies": {
     "formidable": "^3.5.4",
