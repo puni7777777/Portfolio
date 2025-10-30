@@ -59,39 +59,22 @@ export default function FileUpload() {
     const formData = new FormData();
     formData.append('file', selectedFile);
 
-    const ubuntuServerUrl = process.env.NEXT_PUBLIC_UBUNTU_SERVER_URL || 'http://localhost:3001/upload';
-
     try {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', ubuntuServerUrl + '/upload');
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
 
-      xhr.upload.onprogress = (event) => {
-        if (event.lengthComputable) {
-          const percentComplete = Math.round((event.loaded / event.total) * 100);
-          setUploadProgress(percentComplete);
-        }
-      };
+      const result = await response.json();
 
-      xhr.onload = () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          const result = JSON.parse(xhr.responseText);
-          setUploadMessage(`Upload successful: ${result.filename}`);
-        } else {
-          setUploadMessage(`Upload failed: ${xhr.statusText}`);
-        }
-        setUploading(false);
-        setUploadProgress(0);
-      };
-
-      xhr.onerror = () => {
-        setUploadMessage('Upload failed: Network error');
-        setUploading(false);
-        setUploadProgress(0);
-      };
-
-      xhr.send(formData);
+      if (response.ok) {
+        setUploadMessage(`Upload successful: ${result.filename}`);
+      } else {
+        setUploadMessage(`Upload failed: ${result.error || 'Unknown error'}`);
+      }
     } catch (error) {
       setUploadMessage('Upload failed: Network error');
+    } finally {
       setUploading(false);
       setUploadProgress(0);
     }

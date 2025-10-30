@@ -189,41 +189,41 @@ export default function TextHandle() {
               onFocus={selectAll}
             />
           </div>
-          <div className="grid grid-cols-3 gap-3 mb-3">
-            <button className={btnstyle} onClick={selectAll}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3">
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={selectAll}>
               SelectAll
             </button>
-            <button className={btnstyle} onClick={removeLineBreaks}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={removeLineBreaks}>
               Remove_Linebreaks
             </button>
-            <button className={btnstyle} onClick={addLineBreaks}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={addLineBreaks}>
               Add_Linebreaks
             </button>
-            <button className={btnstyle} onClick={addNumberedLineBreaks}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={addNumberedLineBreaks}>
               Add_Numbered_Linebreaks
             </button>
-            <button className={btnstyle} onClick={removeNumbering}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={removeNumbering}>
               Remove_Numbering
             </button>
-            <button className={btnstyle} onClick={capsText}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={capsText}>
               CAPITALIZE
             </button>
-            <button className={btnstyle} onClick={lowerText}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={lowerText}>
               lower_case
             </button>
-            <button className={btnstyle} onClick={sentenceCase}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={sentenceCase}>
               Sentence_Case
             </button>
-            <button className={btnstyle} onClick={capsEachword}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={capsEachword}>
               Capitalize Each Word
             </button>
-            <button className={btnstyle} onClick={toggle}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={toggle}>
               toggle_Case
             </button>
-            <button className={btnstyle} onClick={numToText}>
+            <button className={`${btnstyle} text-xs sm:text-base`} onClick={numToText}>
               Number_to_Words
             </button>
-            <button className={resetbtnstyle} onClick={clear}>
+            <button className={`${resetbtnstyle} text-xs sm:text-base`} onClick={clear}>
               Reset
             </button>
           </div>

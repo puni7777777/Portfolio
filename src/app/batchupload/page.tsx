@@ -44,39 +44,22 @@ export default function BatchUpload() {
       formData.append('files', file);
     });
 
-    const ubuntuServerUrl = process.env.NEXT_PUBLIC_UBUNTU_SERVER_URL || 'http://localhost:3001/batchupload';
-
     try {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', ubuntuServerUrl + '/batchupload');
+      const response = await fetch('/api/batchupload', {
+        method: 'POST',
+        body: formData,
+      });
 
-      xhr.upload.onprogress = (event) => {
-        if (event.lengthComputable) {
-          const percentComplete = Math.round((event.loaded / event.total) * 100);
-          setUploadProgress(percentComplete);
-        }
-      };
+      const result = await response.json();
 
-      xhr.onload = () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          const result = JSON.parse(xhr.responseText);
-          setUploadMessage(`Batch upload successful: ${result.filenames.join(', ')}`);
-        } else {
-          setUploadMessage(`Upload failed: ${xhr.statusText}`);
-        }
-        setUploading(false);
-        setUploadProgress(0);
-      };
-
-      xhr.onerror = () => {
-        setUploadMessage('Upload failed: Network error');
-        setUploading(false);
-        setUploadProgress(0);
-      };
-
-      xhr.send(formData);
+      if (response.ok) {
+        setUploadMessage(`Batch upload successful: ${result.filenames.join(', ')}`);
+      } else {
+        setUploadMessage(`Upload failed: ${result.error || 'Unknown error'}`);
+      }
     } catch (error) {
       setUploadMessage('Upload failed: Network error');
+    } finally {
       setUploading(false);
       setUploadProgress(0);
     }
