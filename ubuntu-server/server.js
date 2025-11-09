@@ -61,7 +61,13 @@ app.post('/batchupload', upload.array('files', 10), (req, res) => {
   });
 });
 
+// Root endpoint to check if server is running
+app.get('/', (req, res) => {
+  res.send('i am running');
+});
+
 // Start HTTP server
+
 const httpServer = http.createServer(app);
 httpServer.listen(PORT, () => {
   console.log(`HTTP Server running on port ${PORT}`);
