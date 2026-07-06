@@ -1,15 +1,64 @@
+import { experience, education } from '@/data/index'
+import { ExperienceTimeline } from '@/components/ExperienceTimeline'
+import { EducationTimeline } from '@/components/EducationTimeline'
+import { Card } from '@/components/ui/Card'
+import { skills } from '@/data/skills'
+import { bio } from '@/data/bio'
+
 export default function About() {
   return (
-    <div className="container mx-auto p-6">
-      <section className="mt-12 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4 text-purple-500">About Me</h1>
-        <p className="text-gray-300 leading-relaxed">
-          I am a passionate Mechanical Engineer with expertise in CAD design, 3D modeling, and simulation. I have hands-on experience with industry-standard software such as SolidWorks, AutoCAD, CATIA, and NX UG. My background includes designing mechanical components, assemblies, and systems with a focus on precision and efficiency. I enjoy solving complex engineering problems and continuously expanding my knowledge in emerging technologies and manufacturing processes.
-        </p>
-        <p className="text-gray-300 leading-relaxed mt-4">
-          Beyond engineering, I am committed to lifelong learning and professional growth. I actively participate in workshops and training sessions to stay updated with the latest advancements in mechanical design and analysis. My goal is to contribute to innovative projects that make a tangible impact in the engineering field.
-        </p>
+    <div className="container mx-auto p-6 py-20">
+      {/* Hero Bio */}
+      <section className="max-w-4xl mx-auto mb-20">
+        <Card header="About Me">
+          <p className="text-gray-300 leading-relaxed text-lg">
+            {bio.full}
+          </p>
+        </Card>
+      </section>
+
+      {/* Skills Grid */}
+      <section className="mb-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+            Skills & Expertise
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {skills.map((skillGroup, index) => (
+            <Card key={index} header={skillGroup.category}>
+              <div className="flex flex-wrap gap-2">
+                {skillGroup.items.map((skill, sIndex) => (
+                  <span key={sIndex} className="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm rounded-full text-purple-300 font-medium text-sm border border-purple-500/30">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Experience Timeline */}
+      <section className="mb-24">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+            Experience Timeline
+          </h2>
+        </div>
+        <ExperienceTimeline experiences={experience} />
+      </section>
+
+      {/* Academic Background */}
+      <section>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+            Academic Background
+          </h2>
+        </div>
+        <EducationTimeline education={education} />
       </section>
     </div>
   );
 }
+
