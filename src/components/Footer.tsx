@@ -51,18 +51,6 @@ const Footer = () => {
               >
                 Projects
               </Link>
-              <Link
-                href="/blog"
-                className="block text-gray-300 hover:text-purple-400 transition-all glow-hover text-sm py-2 px-3 rounded-lg hover:bg-white/10"
-              >
-                Blog
-              </Link>
-              <Link
-                href="/gallery"
-                className="block text-gray-300 hover:text-purple-400 transition-all glow-hover text-sm py-2 px-3 rounded-lg hover:bg-white/10"
-              >
-                Gallery
-              </Link>
             </div>
           </div>
 
