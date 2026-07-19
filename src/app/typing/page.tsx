@@ -88,16 +88,16 @@ export default function TypingPractice() {
 
   const renderText = () => {
     return currentText.split('').map((char: string, index: number) => {
-      let className = 'text-white font-mono'
+      let className = 'text-gray-500 font-mono'
       if (index < userInput.length) {
         className = userInput[index] === char ? 
-          'text-green-400 font-bold bg-green-900/30 px-1 rounded' : 
-          'text-red-400 bg-red-900/30 px-1 rounded'
+          'text-green-400 font-mono' : 
+          'text-red-500 bg-red-950/40 rounded font-mono'
       }
       return (
         <span 
           key={index} 
-          className={`${className} inline-block min-w-[1rem] text-lg`}
+          className={`${className} inline-block min-w-[0.6em] text-lg`}
         >
           {char}
         </span>

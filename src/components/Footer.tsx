@@ -91,12 +91,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6 text-white">Contact</h4>
             <Link
-              href="/resume.pdf"
+              href="/resume"
               className="block w-full mb-6 glow-hover shadow-2xl"
             >
               <button className="glass w-full px-6 py-3 rounded-xl text-white font-semibold hover:bg-purple-600 transition-all duration-300 hover:scale-[1.02] glow-card">
-                <Download className="w-5 h-5 inline mr-2" />
-                Download Resume
+                View Resume
               </button>
             </Link>
             <div className="text-xs space-y-1">

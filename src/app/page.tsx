@@ -22,7 +22,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center"
+        className="text-center pt-16"
       >
         <motion.h1
           className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-6 drop-shadow-2xl"
@@ -54,7 +54,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center"
+        className="text-center pt-36"
       >
         <motion.h2
           className="text-5xl font-bold mb-16 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-xl"
@@ -63,7 +63,7 @@ export default function Home() {
         >
           Skills & Technologies
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skills.map((skill, index) => (
             <Card key={skill.category} header={skill.category} glow>
               <div className="space-y-2">

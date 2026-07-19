@@ -4,7 +4,7 @@ export const resume = {
   email: 'punithkumar1732003@gmail.com' as const,
   github: 'https://github.com/puni7777777' as const,
   
-  summary: `Dynamic Mechanical Design Engineer with 1+ years of hands-on experience in CAD modeling, product design, and engineering analysis at Bharat Electronics Limited. Expert in SolidWorks, AutoCAD, and GD&T for developing precision components and assemblies that meet stringent manufacturing standards. Demonstrated success in applying DFM principles to optimize designs, resolve production challenges, and contribute to cost-effective solutions while ensuring compliance and quality excellence.` as const,
+  summary: `Multidisciplinary Engineer with 1+ years of experience as a Mechanical Design Engineer at Bharat Electronics Limited, specializing in CAD modeling, mechanical design, and engineering analysis alongside software development. Proficient in SolidWorks, AutoCAD, and GD&T for mechanical design, combined with hands-on experience building performant, responsive web applications using Next.js, React, and TypeScript. Demonstrated success in applying engineering precision, clean code architecture, and DFM principles to solve complex physical and digital challenges.` as const,
   
   skills: [
     'SolidWorks',
@@ -19,7 +19,15 @@ export const resume = {
     'SolidWorks Simulation',
     'ANSYS (Basic)',
     'MS Office Suite',
-    'ERP Systems (SAP)'
+    'ERP Systems (SAP)',
+    'Next.js (App Router)',
+    'React.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'JavaScript (ES6+)',
+    'Git & GitHub',
+    'Zod Validation',
+    'Vercel & Netlify'
   ] as const,
   
   experience: [

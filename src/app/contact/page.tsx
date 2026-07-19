@@ -1,7 +1,7 @@
 export default function Contact() {
   return (
-    <div className="flex justify-center items-center min-h-screen text-white bg-black p-4">
-      <div className="flex flex-col gap-4 w-full max-w-md sm:max-w-lg bg-black shadow-md shadow-gray-800 rounded-lg justify-center items-center p-6 sm:p-8">
+    <div className="flex justify-center items-center text-white p-4">
+      <div className="flex flex-col gap-4 w-full max-w-md sm:max-w-lg shadow-md shadow-gray-800 rounded-lg justify-center items-center p-6 sm:p-8">
         <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-center">Contact Me</h1>
         <p className="text-gray-300 mb-6 text-center text-sm sm:text-base">
           Feel free to reach out to me via email or social media.
@@ -16,7 +16,7 @@ export default function Contact() {
               id="name"
               name="name"
               placeholder="Name"
-              className="border-none bg-gray-700 p-3 rounded-lg outline-none caret-purple-500 text-purple-400 w-full text-sm sm:text-base"
+              className="border-none bg-gray-900 p-3 rounded-lg outline-none caret-purple-500 text-purple-500 w-full text-sm sm:text-base"
               required
             />
           </div>
@@ -29,7 +29,7 @@ export default function Contact() {
               id="email"
               name="email"
               placeholder="Email"
-              className="border-none bg-gray-700 p-3 rounded-lg outline-none caret-purple-500 text-purple-400 w-full text-sm sm:text-base"
+              className="border-none bg-gray-900 p-3 rounded-lg outline-none caret-purple-500 text-purple-500 w-full text-sm sm:text-base"
               required
             />
           </div>
@@ -42,14 +42,14 @@ export default function Contact() {
               name="message"
               rows={4}
               placeholder="Message"
-              className="border-none bg-gray-700 p-3 rounded-lg outline-none caret-purple-500 text-purple-400 resize-none w-full text-sm sm:text-base"
+              className="border-none bg-gray-900 p-3 rounded-lg outline-none caret-purple-500 text-purple-500 resize-none w-full text-sm sm:text-base"
               required
             ></textarea>
           </div>
           <div className="flex justify-center text-white font-bold">
             <button
               type="submit"
-              className="w-full sm:w-32 bg-purple-600 rounded-full p-3 hover:bg-purple-500 transition text-sm sm:text-base"
+              className="w-full sm:w-32 bg-purple-600 rounded-full p-3 hover:bg-purple-500 transition text-sm sm:text-base cursor-pointer"
             >
               Send
             </button>

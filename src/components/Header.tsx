@@ -13,7 +13,11 @@ const Header = () => {
   };
 
   return (
-    <header className="text-white p-4">
+    <header className="sticky top-0 z-50 w-full text-white border-b-2 border-purple-700 bg-black backdrop-blur-lg">
+      <div className="absolute -bottom-[2px] left-0 w-full h-[2px] overflow-hidden pointer-events-none">
+        <div className="absolute h-full bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-glow-left blur-[0.5px]" />
+        <div className="absolute h-full bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-glow-right blur-[0.5px]" />
+      </div>
       <nav className="container mx-auto flex justify-between items-center">
         <div className="text-xl font-semibold">
           <Link
@@ -37,7 +41,7 @@ const Header = () => {
             href="/projects"
             className="relative group hover:text-purple-500 text-lg transition-all"
           >
-            Portfolio
+            Projects
             <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
           </Link>
           <div className="relative group">
@@ -45,7 +49,7 @@ const Header = () => {
               Utilities
               <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
             </button>
-            <div className="absolute top-full left-0 mt-2 rounded-lg shadow-xl border border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[140px] p-2">
+            <div className="absolute top-full left-0 mt-2 rounded-lg shadow-xl border border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[200px] p-2">
               <Link
                 href="/typing"
                 className="block px-4 py-2 hover:bg-gray-900 rounded text-left hover:text-purple-400 transition-colors w-full"
@@ -60,13 +64,13 @@ const Header = () => {
               </Link>
             </div>
           </div>
-          <Link
+          {/* <Link
             href="/blog"
             className="relative group hover:text-purple-500 text-lg transition-all"
           >
             Blog
             <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-          </Link>
+          </Link> */}
           <Link
             href="/contact"
             className="relative group hover:text-purple-500 text-lg transition-all"
@@ -74,14 +78,12 @@ const Header = () => {
             Contact
             <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
           </Link>
-          {/* Resume CTA */}
           <Link
-            href="/resume.pdf"
+            href="/resume"
             className="block w-full mb-6 glow-hover shadow-2xl"
           >
             <button className="glass w-full px-6 py-3 rounded-xl mt-5 text-white font-semibold hover:bg-purple-600 transition-all duration-300 hover:scale-[1.02] glow-card">
-              <Download className="w-5 h-5 inline mr-2" />
-              Download Resume
+              View Resume
             </button>
           </Link>
         </div>
@@ -187,13 +189,15 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Button
-                variant="glass"
-                size="sm"
-                className="mt-2 w-full glow-hover"
-              >
-                Download Resume
-              </Button>
+              <Link href="/resume" onClick={() => setIsMenuOpen(false)}>
+                <Button
+                  variant="glass"
+                  size="sm"
+                  className="mt-2 w-full glow-hover"
+                >
+                  View Resume
+                </Button>
+              </Link>
             </li>
           </ul>
         </div>

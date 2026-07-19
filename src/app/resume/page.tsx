@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { resume } from '@/data/resume'
 import type { Education } from '@/data/types'
-import Image from 'next/image'
-import { Download } from 'lucide-react'
+import { Download, Mail, Phone, Github, MapPin, Briefcase, GraduationCap, Award } from 'lucide-react'
 
 export default function Resume() {
   return (
@@ -16,154 +15,178 @@ export default function Resume() {
       animate={{ opacity: 1 }}
       className="container mx-auto p-6 lg:p-12 py-20 max-w-4xl"
     >
-      <motion.section 
+      {/* Page Header */}
+      <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-20"
+        className="text-center mb-16"
       >
-        <motion.h1 
-          className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent drop-shadow-2xl"
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-        >
-          Resume / CV
-        </motion.h1>
-        <motion.p 
-          className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          Download my detailed professional resume and explore my engineering journey
-        </motion.p>
-      </motion.section>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-2xl">
+          {resume.name}
+        </h1>
+        <p className="text-xl md:text-2xl text-purple-400 font-semibold mb-6">
+          Multidisciplinary Engineer • Mechanical Design & Web Development
+        </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+        {/* Contact info bar */}
+        <div className="flex flex-wrap justify-center gap-6 text-gray-300 font-medium text-sm md:text-base border-y border-white/10 py-4 max-w-2xl mx-auto">
+          <a href={`mailto:${resume.email}`} className="flex items-center gap-2 hover:text-purple-400 transition-colors">
+            <Mail className="w-4 h-4 text-purple-500" />
+            {resume.email}
+          </a>
+          <a href={`tel:${resume.phone}`} className="flex items-center gap-2 hover:text-purple-400 transition-colors">
+            <Phone className="w-4 h-4 text-purple-500" />
+            {resume.phone}
+          </a>
+          <a href={resume.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-purple-400 transition-colors">
+            <Github className="w-4 h-4 text-purple-500" />
+            github.com/puni7777777
+          </a>
+        </div>
+      </motion.div>
+
+      {/* Main Resume Sections Wrapper */}
+      <div className="grid gap-12 max-w-3xl mx-auto">
+        
+        {/* Professional Summary */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          <Card header="📄 PDF Resume (ATS Optimized)">
-            <div className="text-center py-12">
-              <motion.div 
-                className="glass-strong w-64 h-96 mx-auto rounded-3xl border-4 border-dashed border-purple-500/50 p-8 flex flex-col items-center justify-center mb-8 glow-hover"
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <svg className="w-24 h-24 text-purple-400 mb-6 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <h3 className="text-2xl font-bold text-white mb-2">resume_fixed.pdf</h3>
-                <p className="text-gray-400 mb-8 text-sm">Machine readable</p>
-              </motion.div>
-              <Button variant="glass" size="lg" className="glow-hover w-full">
-                <Link href="/resume/resume_fixed.pdf" download className="flex items-center gap-2">
-                  <Download className="w-5 h-5" />
-                  Download PDF
-                </Link>
-              </Button>
-            </div>
+          <Card className="glass-strong border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+              <Award className="w-6 h-6 text-purple-400" />
+              Professional Profile
+            </h2>
+            <p className="text-gray-200 text-lg leading-relaxed font-normal">
+              {resume.summary}
+            </p>
           </Card>
-        </motion.div>
+        </motion.section>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
+        {/* Professional Experience */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          <Card header="📝 LaTeX Source">
-            <div className="text-center py-12">
-              <motion.div 
-                className="glass-strong w-64 h-96 mx-auto rounded-3xl border-4 border-dashed border-blue-500/50 p-8 flex flex-col items-center justify-center mb-8 glow-hover"
-                whileHover={{ scale: 1.05, rotateY: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <svg className="w-24 h-24 text-blue-400 mb-6 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                <h3 className="text-2xl font-bold text-white mb-2">resume_fixed.tex</h3>
-                <p className="text-gray-400 mb-8 text-sm">Source code</p>
-              </motion.div>
-              <Button variant="glass" size="lg" className="glow-hover w-full">
-                <Link href="/resume/resume_fixed.tex" download className="flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                  Download LaTeX
-                </Link>
-              </Button>
-            </div>
-          </Card>
-        </motion.div>
-      </div>
-
-        <Card className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
-            {resume.summary}
-          </h2>
-        </Card>
-
-        <div className="grid gap-8 max-w-4xl mx-auto mt-12">
-          <Card header="Experience">
+          <Card header="Experience" className="glass-strong border border-white/10">
             <div className="space-y-6">
               {resume.experience.map((exp, index) => (
-                <motion.div key={index} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="glass p-8 rounded-2xl">
-                  <h3 className="text-2xl font-bold text-white mb-2">{exp.role}</h3>
-                  <p className="text-purple-400 font-semibold text-xl mb-4">{exp.company}, {exp.location}</p>
-                  <p className="text-gray-300 mb-6">{exp.period}</p>
+                <div key={index} className="glass p-6 md:p-8 rounded-2xl border border-white/5 relative overflow-hidden bg-gradient-to-r from-purple-500/5">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1 flex items-center gap-2">
+                        <Briefcase className="w-5 h-5 text-purple-400" />
+                        {exp.role}
+                      </h3>
+                      <p className="text-purple-400 font-semibold text-lg">{exp.company}</p>
+                    </div>
+                    <div className="text-left md:text-right font-mono text-sm text-gray-400">
+                      <p className="flex items-center md:justify-end gap-1.5 mb-1">
+                        <MapPin className="w-3.5 h-3.5 text-purple-400" />
+                        {exp.location}
+                      </p>
+                      <p className="text-gray-300 font-semibold">{exp.period}</p>
+                    </div>
+                  </div>
                   <ul className="space-y-3">
                     {exp.achievements.map((ach, aIndex) => (
-                      <li key={aIndex} className="flex items-start gap-3 text-gray-200">
-                        <span className="glass w-6 h-6 rounded-full flex-shrink-0 mt-0.5 font-bold text-purple-400 text-xs flex items-center justify-center">✓</span>
+                      <li key={aIndex} className="flex items-start gap-3 text-gray-200 text-base leading-relaxed">
+                        <span className="glass w-6 h-6 rounded-full flex-shrink-0 mt-0.5 font-bold text-purple-400 text-xs flex items-center justify-center border border-purple-500/20">✓</span>
                         <span>{ach}</span>
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
               ))}
             </div>
           </Card>
+        </motion.section>
 
-          <Card header="Skills">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {/* Skills Grid */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <Card header="Core Technical Skills" className="glass-strong border border-white/10">
+            <div className="flex flex-wrap gap-3">
               {resume.skills.map((skill, index) => (
                 <motion.span
                   key={skill}
-                  className="glass-strong px-6 py-4 rounded-xl text-white font-semibold text-center hover:bg-white/20 transition-all glow-hover"
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  className="glass-strong px-4 py-2.5 rounded-xl text-white font-semibold text-center border border-white/10 hover:bg-white/10 hover:border-purple-400/50 hover:shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-300 cursor-default"
+                  initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.0 }}
+                  transition={{ delay: index * 0.01 }}
                 >
                   {skill}
                 </motion.span>
               ))}
             </div>
           </Card>
+        </motion.section>
 
-          <Card header="Education">
-            <div className="grid md:grid-cols-2 gap-8">
+        {/* Education */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <Card header="Education" className="glass-strong border border-white/10">
+            <div className="grid md:grid-cols-2 gap-6">
               {(resume.education as readonly Education[]).map((edu, index) => (
-                <motion.div key={index} className="glass p-8 rounded-2xl text-center">
-                  <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
-                  <p className="text-gray-300 mb-2">{edu.school}, {edu.location}</p>
-                  <p className="text-purple-400 font-semibold">{edu.year}</p>
-                  {edu.gpa && <p className="text-blue-400 font-semibold mt-2">{edu.gpa}</p>}
-                  {edu.percentage && <p className="text-blue-400 font-semibold mt-2">{edu.percentage}</p>}
+                <motion.div 
+                  key={index} 
+                  className="glass p-6 rounded-2xl text-center border border-white/5 bg-gradient-to-b from-purple-500/5 flex flex-col justify-between"
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-2 flex items-center justify-center gap-2">
+                      <GraduationCap className="w-5 h-5 text-purple-400" />
+                      {edu.degree}
+                    </h3>
+                    <p className="text-gray-300 text-sm mb-1">{edu.school}</p>
+                    <p className="text-gray-400 text-xs mb-4">{edu.location}</p>
+                  </div>
+                  <div>
+                    <p className="text-purple-400 font-mono font-semibold text-sm mb-2">{edu.year}</p>
+                    {edu.gpa && (
+                      <p className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 font-mono text-xs rounded-full">
+                        GPA: {edu.gpa}
+                      </p>
+                    )}
+                    {edu.percentage && (
+                      <p className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 font-mono text-xs rounded-full">
+                        Percentage: {edu.percentage}
+                      </p>
+                    )}
+                  </div>
                 </motion.div>
               ))}
             </div>
           </Card>
-        </div>
-
-      <div className="text-center mt-16">
-        <Button asChild variant="outline" size="lg">
-          <Link href="/contact" className="text-xl">
-            Let&apos;s Collaborate →
-          </Link>
-        </Button>
+        </motion.section>
       </div>
+
+      {/* Dynamic CTAs at the bottom */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="text-center mt-20 space-y-6 max-w-sm mx-auto"
+      >
+        <a 
+          href="/resume.pdf" 
+          download="AVULA_PUNITH_KUMAR_REDDY_Resume.pdf"
+          className="inline-flex items-center justify-center gap-2.5 w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 active:scale-95 text-lg"
+        >
+          <Download className="w-5 h-5" />
+          Download PDF Resume
+        </a>
+      </motion.div>
     </motion.div>
   )
 }
-

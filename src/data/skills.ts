@@ -16,6 +16,13 @@ export const skills: Skill[] = [
   {
     category: 'Tools',
     items: ['MS Office Suite', 'ERP Systems (SAP)']
+  },
+  {
+    category: 'Web Development',
+    items: ['Next.js (App Router)', 'React.js', 'TypeScript', 'Tailwind CSS']
+  },
+  {
+    category: 'Software Utilities',
+    items: ['Git & GitHub', 'REST APIs', 'Vercel']
   }
 ] as const
-

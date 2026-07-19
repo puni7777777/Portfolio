@@ -1,11 +1,11 @@
 import type { Project } from './types'
 
 export const projects: Project[] = [
-{
+  {
     id: 'bladeless-fan',
     title: "Bladeless Fan using Ion Wind",
     description: "B.Tech Major Project | Designed and prototyped a bladeless fan utilizing Ion Wind (Ion thrust) to generate airflow through high-voltage corona discharge. Optimized electrode geometries in SolidWorks and performed experimental analysis.",
-    link: "https://github.com/puni7777777/bladeless-fan",
+    link: "",
     category: "Mechanical",
     tech: ["SolidWorks", "ANSYS", "CAD", "Prototyping"],
     designProcess: [
@@ -30,18 +30,6 @@ export const projects: Project[] = [
       { label: "Power Draw", value: "25", unit: "W" }
     ]
   },
-
-
-
-
-  {
-    id: 'gearbox-assembly',
-    title: "Gearbox Assembly Design",
-    description: "Complete gearbox CAD model with gear calculations, shaft design, bearing selection, and housing optimization. Full assembly with motion simulation and tolerance analysis.",
-    link: "https://github.com/puni7777777/gearbox-design",
-    category: "Mechanical",
-    tech: ["SolidWorks", "CATIA", "Motion Study", "FEA"]
-  },
   {
     id: 'arrora',
     title: "Arrora E-commerce",
@@ -57,7 +45,6 @@ export const projects: Project[] = [
       { label: "TTI", value: "1.4", unit: "s" }
     ]
   },
-
   {
     id: 'dsa-tracker',
     title: "DSA Tracker",
@@ -99,4 +86,3 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "File API"]
   }
 ]
-
