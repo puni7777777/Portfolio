@@ -12,13 +12,12 @@ interface CardProps {
   animate?: boolean
 }
 
-export const Card = ({ className, children, header, glow = true, animate = true }: CardProps) => {
+export const Card = ({ className, children, header, animate = true }: CardProps) => {
   const MotionDiv = motion.div
   const content = (
     <div
       className={cn(
-        'glass-strong rounded-2xl p-6 md:p-8 border-0 shadow-2xl glow-card',
-        glow && 'hover:shadow-purple-500/60',
+        'rounded-2xl p-6 md:p-8 border-0 shadow-2xl',
         className
       )}
     >
@@ -46,4 +45,3 @@ export const Card = ({ className, children, header, glow = true, animate = true 
     </MotionDiv>
   )
 }
-

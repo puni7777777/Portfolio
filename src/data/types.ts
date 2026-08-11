@@ -9,6 +9,8 @@ export interface Project {
   software?: string[]
   specs?: { label: string; value: string }[]
   performance?: { label: string; value: string; unit?: string }[]
+  modelUrl?: string
+  models?: { name: string; url: string }[]
 }
 
 

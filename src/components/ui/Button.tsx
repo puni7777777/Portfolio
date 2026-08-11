@@ -12,7 +12,7 @@ interface ButtonProps
   asChild?: boolean;
 }
 
-const MotionSlot = motion(Slot);
+const MotionSlot = motion.create(Slot);
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -35,7 +35,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 disabled:pointer-events-none disabled:opacity-50 glow-hover",
           {
-            "glass-strong px-6 py-3 underline underline-offset-5 decoration-purple-600 text-white hover:bg-purple-600 hover:shadow-purple-500 hover:-translate-y-1 backdrop-blur-xl":
+            "glass-strong px-6 py-3 underline underline-offset-5 decoration-current text-white hover:bg-purple-600 hover:shadow-purple-500 hover:-translate-y-1 backdrop-blur-xl":
               variant === "glass",
             "glass bg-gradient-to-r from-purple-600/80 to-purple-700/80 hover:from-purple-600 hover:to-purple-700 text-white h-10 px-4 py-2 shadow-xl hover:shadow-2xl backdrop-blur-md border-white/20":
               variant === "default",

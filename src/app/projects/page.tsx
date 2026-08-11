@@ -1,11 +1,16 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { projects } from '@/data/projects'
+import type { Project } from '@/data/types'
 import { motion } from 'framer-motion'
-import { Wrench, Code } from 'lucide-react'
+import { Wrench, Code, Box } from 'lucide-react'
+import CadViewerModal from '@/components/CadViewerModal'
 
 export default function Projects() {
+  const [activeModalProject, setActiveModalProject] = useState<Project | null>(null)
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -49,7 +54,7 @@ export default function Projects() {
             {project.category === 'Mechanical' ? (
               /* Mechanical Engineering Project Card */
               <div 
-                className="block min-h-[420px] flex flex-col bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px] bg-slate-950/60 glass-strong rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card cursor-pointer"
+                className="min-h-[420px] flex flex-col bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px] bg-slate-950/60 glass-strong rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card"
               >
                 {/* Header with Category Badge and Icon */}
                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/5">
@@ -99,31 +104,35 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  {/* Buttons */}
-                  <div className="flex gap-3">
+                  {/* Action Buttons */}
+                  <div className="flex gap-2">
                     <Link 
                       href={`/projects/${project.id}`}
-                      className="flex-grow text-center glass px-5 py-2.5 rounded-xl text-white font-medium text-sm border border-white/20 hover:bg-white/10 hover:shadow-cyan-500/20 transition-all duration-300 glow-hover"
+                      className="flex-1 text-center glass px-3 py-2 rounded-xl text-white font-medium text-xs border border-white/20 hover:bg-white/10 hover:shadow-cyan-500/20 transition-all duration-300 glow-hover flex items-center justify-center"
                     >
-                      View Project
+                      Details
                     </Link>
-                    {project.link && (
-                      <a 
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-grow text-center bg-transparent px-5 py-2.5 rounded-xl text-cyan-400 font-medium text-sm border-2 border-cyan-400/50 hover:bg-cyan-500/10 hover:text-cyan-300 hover:shadow-cyan-500/20 transition-all duration-300 glow-hover flex items-center justify-center gap-1"
-                      >
-                        GitHub →
-                      </a>
-                    )}
+                    <Link 
+                      href={`/projects/${project.id}/3d`}
+                      className="flex-1 text-center bg-cyan-950/80 px-3 py-2 rounded-xl text-cyan-300 font-medium text-xs border border-cyan-500/40 hover:bg-cyan-900/60 transition-all duration-300 flex items-center justify-center gap-1"
+                    >
+                      <Box className="w-3.5 h-3.5 text-cyan-400" />
+                      3D Page
+                    </Link>
+                    {/* <button
+                      onClick={() => setActiveModalProject(project)}
+                      className="px-3 py-2 rounded-xl bg-cyan-600/80 hover:bg-cyan-500 text-white font-medium text-xs border border-cyan-400/50 shadow-md transition-all flex items-center justify-center"
+                      title="Quick 3D Modal"
+                    >
+                      📦 Modal
+                    </button> */}
                   </div>
                 </div>
               </div>
             ) : (
               /* Software Project Card */
-              <div 
-                className="block min-h-[420px] flex flex-col bg-gradient-to-br from-black/50 via-slate-900/40 to-purple-950/20 glass-strong rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card cursor-pointer"
+              <div
+                className="min-h-[420px] flex flex-col bg-gradient-to-br from-black/50 via-slate-900/40 to-purple-950/20 glass-strong rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card cursor-pointer"
               >
                 {/* Header with Category Badge and Icon */}
                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/5">
@@ -194,6 +203,14 @@ export default function Projects() {
           </motion.div>
         ))}
       </div>
+
+      {/* Quick 3D CAD Viewer Modal */}
+      <CadViewerModal
+        isOpen={!!activeModalProject}
+        onClose={() => setActiveModalProject(null)}
+        modelUrl={activeModalProject?.modelUrl || (activeModalProject ? `/models/${activeModalProject.id}.stl` : '')}
+        modelName={activeModalProject?.title || '3D CAD Model'}
+      />
     </motion.div>
   )
 }

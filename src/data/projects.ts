@@ -7,6 +7,10 @@ export const projects: Project[] = [
     description: "B.Tech Major Project | Designed and prototyped a bladeless fan utilizing Ion Wind (Ion thrust) to generate airflow through high-voltage corona discharge. Optimized electrode geometries in SolidWorks and performed experimental analysis.",
     link: "",
     category: "Mechanical",
+    modelUrl: "/models/bladeless-fan.stl",
+    models: [
+      { name: "3D Mesh (STL)", url: "/models/bladeless-fan.stl" },
+    ],
     tech: ["SolidWorks", "ANSYS", "CAD", "Prototyping"],
     designProcess: [
       "Electrode geometry optimization",

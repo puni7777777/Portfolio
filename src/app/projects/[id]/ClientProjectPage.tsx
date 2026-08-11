@@ -1,23 +1,29 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { projects } from '@/data/projects'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { motion } from 'framer-motion'
 import { notFound } from 'next/navigation'
-import { Wrench, Code } from 'lucide-react'
+import { Wrench, Code, Box } from 'lucide-react'
+import StandaloneCadViewer from '@/components/StandaloneCadViewer'
+import CadViewerModal from '@/components/CadViewerModal'
 
 interface ProjectPageProps {
   id: string
 }
 
 export default function ClientProjectPage({ id }: ProjectPageProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const project = projects.find(p => p.id === id)
 
   if (!project) {
     notFound()
   }
+
+  const modelUrl = project?.modelUrl || `/models/${project?.id}.stl`
 
   const isMech = project.category === 'Mechanical'
   const theme = {
@@ -28,8 +34,8 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
     borderHover: isMech ? 'hover:border-cyan-400/50' : 'hover:border-purple-400/50',
     bg: isMech ? 'bg-cyan-950/10' : 'bg-purple-950/10',
     bgMuted: isMech ? 'from-cyan-500/5' : 'from-purple-500/5',
-    shadowGlow: isMech ? 'hover:shadow-cyan-500/20' : 'hover:shadow-purple-500/20',
-    glowClass: isMech ? 'hover:shadow-[0_0_20px_rgba(6,182,212,0.15)]' : 'hover:shadow-[0_0_20px_rgba(168,85,247,0.15)]',
+    // shadowGlow: isMech ? 'hover:shadow-cyan-500/20' : 'hover:shadow-purple-500/20',
+    // glowClass: isMech ? 'hover:shadow-[0_0_20px_rgba(6,182,212,0.15)]' : 'hover:shadow-[0_0_20px_rgba(168,85,247,0.15)]',
     gradientText: isMech ? 'from-cyan-400 to-blue-500' : 'from-purple-400 to-indigo-500',
     gradientBg: isMech ? 'from-cyan-500/10 to-blue-500/10' : 'from-purple-500/10 to-indigo-500/10',
     Icon: isMech ? Wrench : Code,
@@ -48,9 +54,9 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-20 "
+        className="text-center mb-20"
       >
-        <Card className={`max-w-4xl mx-auto glass-strong ${theme.borderHover} ${theme.glowClass} ${theme.gridBg}`}>
+        <Card className={`max-w-4xl mx-auto glass-strong ${theme.gridBg}`}>
           <div className="flex justify-center mb-6">
             <ProjectIcon className={`w-12 h-12 ${theme.text} animate-pulse`} />
           </div>
@@ -74,17 +80,29 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
               <Button 
                 variant="glass" 
                 size="lg" 
-                className={`flex-1 hover:bg-${isMech ? 'cyan' : 'purple'}-600 hover:shadow-${isMech ? 'cyan' : 'purple'}-500`}
+                className={isMech ? "flex-1 hover:bg-cyan-600 hover:shadow-cyan-500/50 hover:decoration-cyan-400" : "flex-1 hover:bg-purple-600 hover:shadow-purple-500/50 hover:decoration-purple-400"}
               >
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="block w-full text-center">
                   View Source Code
                 </a>
               </Button>
             )}
+            {isMech && (
+              <Button 
+                variant="glass" 
+                size="lg" 
+                className="flex-1 bg-cyan-950/60 border-cyan-500/40 text-cyan-300 decoration-cyan-400 hover:decoration-cyan-300 hover:bg-cyan-600 hover:shadow-cyan-500/50 hover:text-white"
+              >
+                <Link href={`/projects/${project.id}/3d`} className="flex items-center justify-center gap-2 w-full text-center">
+                  <Box className="w-4 h-4 text-cyan-400 group-hover:text-white transition-colors" />
+                  Full 3D View
+                </Link>
+              </Button>
+            )}
             <Button 
               variant="outline" 
               size="lg" 
-              className={`flex-1 border-${isMech ? 'cyan' : 'purple'}-400/70 text-${isMech ? 'cyan' : 'purple'}-400 hover:shadow-${isMech ? 'cyan' : 'purple'}-500`}
+              className={isMech ? "flex-1 border-cyan-400/70 text-cyan-400 hover:border-cyan-400 hover:shadow-cyan-500/50 hover:bg-cyan-950/40" : "flex-1 border-purple-400/70 text-purple-400 hover:border-purple-400 hover:shadow-purple-500/50 hover:bg-purple-950/40"}
             >
               <Link href="/projects" className="block w-full text-center">
                 ← Back to Projects
@@ -96,7 +114,7 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
 
       {/* Design Process */}
       <section className="mb-24">
-        <Card className={`max-w-3xl mx-auto ${theme.borderHover} ${theme.glowClass} ${theme.gridBg}`}>
+        <Card className={`max-w-3xl mx-auto ${theme.borderHover} ${theme.gridBg}`}>
           <h2 className="text-3xl font-bold mb-8 text-white flex items-center gap-3">
             <ProjectIcon className={`w-8 h-8 ${theme.text}`} />
             {isMech ? 'Engineering Design Process' : 'Development & Architecture'}
@@ -124,7 +142,7 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
       {/* Software/Tools */}
       {project.software && project.software.length > 0 && (
         <section className="mb-24">
-          <Card className={`max-w-3xl mx-auto ${theme.borderHover} ${theme.glowClass} ${theme.gridBg}`}>
+          <Card className={`max-w-3xl mx-auto ${theme.borderHover} ${theme.gridBg}`}>
             <h2 className="text-3xl font-bold mb-8 text-white flex items-center gap-3">
               <ProjectIcon className={`w-8 h-8 ${theme.text}`} />
               {isMech ? 'CAD Software & Analysis Tools' : 'Technology Stack'}
@@ -150,7 +168,7 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
       {/* Specs */}
       {project.specs && project.specs.length > 0 && (
         <section className="mb-24">
-          <Card className={`max-w-3xl mx-auto ${theme.borderHover} ${theme.glowClass} ${theme.gridBg}`}>
+          <Card className={`max-w-3xl mx-auto ${theme.borderHover} ${theme.gridBg}`}>
             <h2 className="text-3xl font-bold mb-12 text-white text-center flex items-center justify-center gap-3">
               <ProjectIcon className={`w-8 h-8 ${theme.text}`} />
               Technical Specifications
@@ -178,7 +196,7 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
       {/* Performance Metrics */}
       {project.performance && project.performance.length > 0 && (
         <section className="mb-24">
-          <Card className={`max-w-6xl mx-auto ${theme.borderHover} ${theme.glowClass} ${theme.gridBg}`}>
+          <Card className={`max-w-6xl mx-auto ${theme.borderHover}  ${theme.gridBg}`}>
             <h2 className="text-3xl font-bold mb-12 text-white text-center flex items-center justify-center gap-3">
               <ProjectIcon className={`w-8 h-8 ${theme.text}`} />
               Performance &amp; Simulation Metrics
@@ -207,30 +225,51 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
         </section>
       )}
 
-      {/* 3D Viewer Placeholder */}
+      {/* Interactive 3D CAD Model Viewer Component */}
       {isMech && (
         <section className="mb-24">
-          <Card className={`max-w-6xl mx-auto ${theme.borderHover} ${theme.glowClass} bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px] bg-slate-950/60`}>
-            <h2 className="text-3xl font-bold mb-12 text-white text-center flex items-center justify-center gap-3">
-              <Wrench className="w-8 h-8 text-cyan-400" />
-              3D CAD Model Viewer
-            </h2>
-            <div className={`glass-strong rounded-2xl p-8 min-h-[500px] flex items-center justify-center border-2 ${theme.border} bg-gradient-to-b from-slate-950/50`}>
-              <div className="text-center text-gray-300">
-                <h3 className="text-2xl font-bold mb-4 text-cyan-400">Ready for 3D Model</h3>
-                <p className="mb-8 text-lg text-gray-400">Showcase STL or OBJ engineering designs interactively</p>
-                <div className="text-sm opacity-75 grid grid-cols-2 md:grid-cols-3 gap-4 max-w-md mx-auto font-mono text-cyan-300">
-                  <p>• @react-three/fiber</p>
-                  <p>• OrbitControls</p>
-                  <p>• Metallic Shaders</p>
-                  <p>• Technical Grid</p>
-                  <p>• Zoom &amp; Rotate</p>
-                  <p>• Exploded Views</p>
-                </div>
+          <Card className={`max-w-6xl mx-auto ${theme.borderHover}  bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px] bg-slate-950/60`}>
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-cyan-500/20">
+              <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
+                <Wrench className="w-8 h-8 text-cyan-400" />
+                3D CAD Model Viewport
+              </h2>
+              <div className="flex items-center gap-3">
+                <Link
+                  href={`/projects/${project.id}/3d`}
+                  className="px-4 py-2 rounded-xl bg-cyan-950/60 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-900/60 text-xs font-mono font-bold transition-all flex items-center gap-2"
+                >
+                  <Box className="w-4 h-4 text-cyan-400" />
+                  <span>Dedicated 3D Page ↗</span>
+                </Link>
+                {/* <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-mono font-bold text-xs shadow-lg hover:shadow-cyan-500/20 transition-all flex items-center gap-2"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span>Pop-out Modal 📦</span>
+                </button> */}
               </div>
             </div>
+
+            <StandaloneCadViewer
+              modelUrl={modelUrl}
+              modelName={project.title}
+              models={project.models}
+              height="600px"
+            />
           </Card>
         </section>
+      )}
+
+      {/* Pop-out 3D CAD Viewer Modal */}
+      {isMech && (
+        <CadViewerModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          modelUrl={modelUrl}
+          modelName={project.title}
+        />
       )}
     </motion.div>
   )
