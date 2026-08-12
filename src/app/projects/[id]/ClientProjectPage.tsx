@@ -48,27 +48,27 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`container mx-auto p-6 lg:p-12 min-h-screen ${isMech ? 'bg-[radial-gradient(#ffffff04_1px,transparent_1px)] [background-size:20px_20px]' : ''}`}
+      className={`container mx-auto px-4 py-6 sm:px-6 lg:p-12 min-h-screen ${isMech ? 'bg-[radial-gradient(#ffffff04_1px,transparent_1px)] [background-size:20px_20px]' : ''}`}
     >
       {/* Hero */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-20"
+        className="text-center mb-10 sm:mb-20"
       >
         <Card className={`max-w-4xl mx-auto glass-strong ${theme.gridBg}`}>
-          <div className="flex justify-center mb-6">
-            <ProjectIcon className={`w-12 h-12 ${theme.text} animate-pulse`} />
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <ProjectIcon className={`w-10 h-10 sm:w-12 sm:h-12 ${theme.text} animate-pulse`} />
           </div>
           <motion.h1 
-            className={`text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r ${theme.gradientText} bg-clip-text text-transparent`}
+            className={`text-2xl sm:text-4xl md:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r ${theme.gradientText} bg-clip-text text-transparent`}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
           >
             {project.title}
           </motion.h1>
           <motion.p 
-            className="text-xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-xl text-gray-200 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}

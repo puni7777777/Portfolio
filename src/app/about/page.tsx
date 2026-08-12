@@ -7,29 +7,29 @@ import { bio } from '@/data/bio'
 
 export default function About() {
   return (
-    <div className="container mx-auto p-6 py-20">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20">
       {/* Hero Bio */}
-      <section className="max-w-4xl mx-auto mb-20">
+      <section className="max-w-4xl mx-auto mb-12 sm:mb-20">
         <Card header="About Me">
-          <p className="text-gray-300 leading-relaxed text-lg">
+          <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
             {bio.full}
           </p>
         </Card>
       </section>
 
       {/* Skills Grid */}
-      <section className="mb-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+      <section className="mb-12 sm:mb-20">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
             Skills & Expertise
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {skills.map((skillGroup, index) => (
             <Card key={index} header={skillGroup.category}>
               <div className="flex flex-wrap gap-2">
                 {skillGroup.items.map((skill, sIndex) => (
-                  <span key={sIndex} className="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm rounded-full text-purple-300 font-medium text-sm border border-purple-500/30">
+                  <span key={sIndex} className="px-3.5 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm rounded-full text-purple-300 font-medium text-xs sm:text-sm border border-purple-500/30">
                     {skill}
                   </span>
                 ))}
@@ -40,9 +40,9 @@ export default function About() {
       </section>
 
       {/* Experience Timeline */}
-      <section className="mb-24">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+      <section className="mb-16 sm:mb-24">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
             Experience Timeline
           </h2>
         </div>
@@ -51,8 +51,8 @@ export default function About() {
 
       {/* Academic Background */}
       <section>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
             Academic Background
           </h2>
         </div>
@@ -61,4 +61,3 @@ export default function About() {
     </div>
   );
 }
-

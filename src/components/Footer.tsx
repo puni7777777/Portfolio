@@ -3,9 +3,9 @@ import { Github, Linkedin, Mail, Download } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <footer className="glass-strong border-white/10 backdrop-blur-2xl mt-24 pt-16 pb-12 relative overflow-hidden shadow-2xl">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="glass-strong border-white/10 backdrop-blur-2xl mt-16 sm:mt-24 pt-10 sm:pt-16 pb-8 sm:pb-12 relative overflow-hidden shadow-2xl">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           <div className="space-y-4">
             <div className="text-3xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-2xl">
               PUNITH

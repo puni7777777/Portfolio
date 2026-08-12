@@ -13,34 +13,34 @@ export default function Resume() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="container mx-auto p-6 lg:p-12 py-20 max-w-4xl"
+      className="container mx-auto px-4 sm:px-6 lg:p-12 py-10 sm:py-20 max-w-4xl"
     >
       {/* Page Header */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-16"
+        className="text-center mb-10 sm:mb-16"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-2xl">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black mb-4 bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-2xl">
           {resume.name}
         </h1>
-        <p className="text-xl md:text-2xl text-purple-400 font-semibold mb-6">
+        <p className="text-lg sm:text-2xl text-purple-400 font-semibold mb-6">
           Multidisciplinary Engineer • Mechanical Design & Web Development
         </p>
 
         {/* Contact info bar */}
-        <div className="flex flex-wrap justify-center gap-6 text-gray-300 font-medium text-sm md:text-base border-y border-white/10 py-4 max-w-2xl mx-auto">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-6 text-gray-300 font-medium text-xs sm:text-base border-y border-white/10 py-4 max-w-2xl mx-auto">
           <a href={`mailto:${resume.email}`} className="flex items-center gap-2 hover:text-purple-400 transition-colors">
-            <Mail className="w-4 h-4 text-purple-500" />
-            {resume.email}
+            <Mail className="w-4 h-4 text-purple-500 flex-shrink-0" />
+            <span>{resume.email}</span>
           </a>
           <a href={`tel:${resume.phone}`} className="flex items-center gap-2 hover:text-purple-400 transition-colors">
-            <Phone className="w-4 h-4 text-purple-500" />
-            {resume.phone}
+            <Phone className="w-4 h-4 text-purple-500 flex-shrink-0" />
+            <span>{resume.phone}</span>
           </a>
           <a href={resume.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-purple-400 transition-colors">
-            <Github className="w-4 h-4 text-purple-500" />
-            github.com/puni7777777
+            <Github className="w-4 h-4 text-purple-500 flex-shrink-0" />
+            <span>github.com/puni7777777</span>
           </a>
         </div>
       </motion.div>

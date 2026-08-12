@@ -21,17 +21,17 @@ export default function Projects() {
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-20"
+        className="text-center mb-10 sm:mb-20"
       >
         <motion.h1 
-          className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent"
+          className="text-3xl sm:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent"
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
         >
           Engineering Projects
         </motion.h1>
         <motion.p 
-          className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          className="text-base sm:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}

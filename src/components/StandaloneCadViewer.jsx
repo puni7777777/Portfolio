@@ -155,7 +155,7 @@ function EmbeddedViewCube({ cameraRef, controlsRef }) {
   };
 
   return (
-    <div className="absolute top-4 right-4 z-20 flex flex-col items-center gap-1 bg-zinc-950/80 p-2 rounded-2xl border border-zinc-800/80 backdrop-blur-md shadow-2xl select-none font-mono text-[10px]">
+    <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex flex-col items-center gap-1 bg-zinc-950/85 p-1.5 sm:p-2 rounded-2xl border border-zinc-800/80 backdrop-blur-md shadow-2xl select-none font-mono text-[9px] sm:text-[10px] scale-75 sm:scale-100 origin-top-right">
       <div ref={cubeMountRef} className="w-27.5 h-27.5 cursor-pointer" />
       {activeFace && (
         <div className="text-[10px] font-bold text-cyan-400 animate-in fade-in">
@@ -746,13 +746,15 @@ export default function StandaloneCadViewer({
         )}
 
         {/* Floating Controls Overlay */}
-        <div className="absolute bottom-4 left-4 p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 backdrop-blur-md text-[11px] font-mono text-zinc-400 space-y-1 pointer-events-none select-none">
-          <div className="text-white font-bold flex items-center gap-1.5">
-            <span className="text-cyan-400">🖱 Controls:</span>
+        <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 p-2.5 sm:p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 backdrop-blur-md text-[10px] sm:text-[11px] font-mono text-zinc-400 space-y-0.5 sm:space-y-1 pointer-events-none select-none max-w-[200px] sm:max-w-none">
+          <div className="text-white font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">
+            <span className="text-cyan-400">👋 3D Controls:</span>
           </div>
-          <div>Left Click + Drag: Rotate 360°</div>
-          <div>Right Click + Drag: Pan Camera</div>
-          <div>Scroll Wheel: Zoom In / Out</div>
+          <div className="hidden sm:block">Left Click + Drag: Rotate 360°</div>
+          <div className="hidden sm:block">Right Click + Drag: Pan Camera</div>
+          <div className="hidden sm:block">Scroll Wheel: Zoom In / Out</div>
+          <div className="sm:hidden text-zinc-300 font-semibold">1-Finger Touch: Rotate 360°</div>
+          <div className="sm:hidden text-zinc-400">Pinch: Zoom & Pan</div>
         </div>
       </div>
     </div>

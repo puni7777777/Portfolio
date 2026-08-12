@@ -2,27 +2,28 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Button } from "./ui/Button";
-import { Download } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUtilitiesOpen, setIsUtilitiesOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full text-white border-b-2 border-purple-700 bg-black backdrop-blur-lg">
+    <header className="sticky top-0 z-50 w-full text-white border-b-2 border-purple-700 bg-black/90 backdrop-blur-xl">
       <div className="absolute -bottom-[2px] left-0 w-full h-[2px] overflow-hidden pointer-events-none">
         <div className="absolute h-full bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-glow-left blur-[0.5px]" />
         <div className="absolute h-full bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-glow-right blur-[0.5px]" />
       </div>
-      <nav className="container mx-auto flex justify-between items-center">
-        <div className="text-xl font-semibold">
+
+      <nav className="container mx-auto px-4 py-3 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div className="text-xl font-bold tracking-wider">
           <Link
             href="/"
-            className="hover:text-purple-500 hover:shadow-lg hover:shadow-purple-500/50 transition duration-200"
+            className="hover:text-purple-400 transition-colors"
           >
             PUNITH
           </Link>
@@ -32,102 +33,74 @@ const Header = () => {
         <div className="hidden md:flex items-center space-x-6">
           <Link
             href="/about"
-            className="relative group hover:text-purple-500 text-lg transition-all"
+            className="relative group hover:text-purple-400 text-base font-medium transition-all"
           >
             About
-            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
           </Link>
           <Link
             href="/projects"
-            className="relative group hover:text-purple-500 text-lg transition-all"
+            className="relative group hover:text-purple-400 text-base font-medium transition-all"
           >
             Projects
-            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
           </Link>
+          
+          {/* Desktop Utilities Dropdown */}
           <div className="relative group">
-            <button className="relative group hover:text-purple-500 text-lg transition-all flex items-center gap-1">
+            <button className="relative hover:text-purple-400 text-base font-medium transition-all flex items-center gap-1 py-1">
               Utilities
-              <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+              <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
             </button>
-            <div className="absolute top-full left-0 mt-2 rounded-lg shadow-xl border border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[200px] p-2">
+            <div className="absolute top-full left-0 mt-1 rounded-xl shadow-2xl border border-zinc-800 bg-zinc-950 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[190px] p-2">
               <Link
                 href="/typing"
-                className="block px-4 py-2 hover:bg-gray-900 rounded text-left hover:text-purple-400 transition-colors w-full"
+                className="block px-4 py-2.5 hover:bg-purple-950/40 rounded-lg text-left hover:text-purple-400 transition-colors text-sm font-medium"
               >
                 Typing Practice
               </Link>
               <Link
                 href="/texthandle"
-                className="block px-4 py-2 hover:bg-gray-900 rounded text-left hover:text-purple-400 transition-colors w-full"
+                className="block px-4 py-2.5 hover:bg-purple-950/40 rounded-lg text-left hover:text-purple-400 transition-colors text-sm font-medium"
               >
                 Text Handle
               </Link>
             </div>
           </div>
-          {/* <Link
-            href="/blog"
-            className="relative group hover:text-purple-500 text-lg transition-all"
-          >
-            Blog
-            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-          </Link> */}
+
           <Link
             href="/contact"
-            className="relative group hover:text-purple-500 text-lg transition-all"
+            className="relative group hover:text-purple-400 text-base font-medium transition-all"
           >
             Contact
-            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 shadow-[0_2px_4px_#a855f7] origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-purple-500 origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
           </Link>
-          <Link
-            href="/resume"
-            className="block w-full mb-6 glow-hover shadow-2xl"
-          >
-            <button className="glass w-full px-6 py-3 rounded-xl mt-5 text-white font-semibold hover:bg-purple-600 transition-all duration-300 hover:scale-[1.02] glow-card">
+
+          <Link href="/resume">
+            <button className="px-4 py-2 rounded-xl bg-purple-600/80 hover:bg-purple-600 text-white font-semibold text-sm border border-purple-400/40 shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-[1.03]">
               View Resume
             </button>
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden text-white focus:outline-none"
+          className="md:hidden p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-white focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {isMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
+          {isMenuOpen ? <X className="w-6 h-6 text-purple-400" /> : <Menu className="w-6 h-6 text-white" />}
         </button>
       </nav>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation Drawer */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black border-t border-gray-700">
-          <ul className="flex flex-col space-y-2 p-4">
+        <div className="md:hidden bg-zinc-950/95 border-b border-zinc-800 backdrop-blur-2xl animate-in slide-in-from-top-4 duration-200">
+          <ul className="flex flex-col space-y-3 p-5 font-medium text-base">
             <li>
               <Link
                 href="/"
-                className="block hover:text-purple-500 py-2"
+                className="block py-2 text-zinc-200 hover:text-purple-400"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
@@ -136,7 +109,7 @@ const Header = () => {
             <li>
               <Link
                 href="/about"
-                className="block hover:text-purple-500 py-2"
+                className="block py-2 text-zinc-200 hover:text-purple-400"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
@@ -145,58 +118,57 @@ const Header = () => {
             <li>
               <Link
                 href="/projects"
-                className="block hover:text-purple-500 py-2"
+                className="block py-2 text-zinc-200 hover:text-purple-400"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Portfolio
+                Projects
               </Link>
             </li>
-            <li className="group relative">
-              <button className="block w-full text-left hover:text-purple-500 py-2 transition-all group-hover:bg-gray-700 px-4 rounded">
-                Utilities ▼
-              </button>
-              <div className="absolute top-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-xl border border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[140px] ml-auto">
-                <Link
-                  href="/typing"
-                  className="block px-4 py-2 hover:bg-gray-700 rounded text-left hover:text-purple-400 transition-colors w-full"
-                >
-                  Typing Practice
-                </Link>
-                <Link
-                  href="/texthandle"
-                  className="block px-4 py-2 hover:bg-gray-700 rounded text-left hover:text-purple-400 transition-colors w-full"
-                >
-                  Text Handle
-                </Link>
-              </div>
-            </li>
+            
+            {/* Mobile Utilities Accordion */}
             <li>
-              <Link
-                href="/blog"
-                className="block hover:text-purple-500 py-2"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => setIsUtilitiesOpen(!isUtilitiesOpen)}
+                className="flex items-center justify-between w-full py-2 text-zinc-200 hover:text-purple-400"
               >
-                Blog
-              </Link>
+                <span>Utilities</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${isUtilitiesOpen ? "rotate-180 text-purple-400" : ""}`} />
+              </button>
+              {isUtilitiesOpen && (
+                <div className="ml-4 pl-3 border-l-2 border-purple-500/40 space-y-2 pt-1 pb-2">
+                  <Link
+                    href="/typing"
+                    className="block py-1.5 text-sm text-zinc-400 hover:text-purple-300"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Typing Practice
+                  </Link>
+                  <Link
+                    href="/texthandle"
+                    className="block py-1.5 text-sm text-zinc-400 hover:text-purple-300"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Text Handle
+                  </Link>
+                </div>
+              )}
             </li>
+
             <li>
               <Link
                 href="/contact"
-                className="block hover:text-purple-500 py-2"
+                className="block py-2 text-zinc-200 hover:text-purple-400"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
             </li>
-            <li>
+
+            <li className="pt-2">
               <Link href="/resume" onClick={() => setIsMenuOpen(false)}>
-                <Button
-                  variant="glass"
-                  size="sm"
-                  className="mt-2 w-full glow-hover"
-                >
+                <button className="w-full py-3 rounded-xl bg-purple-600 text-white font-semibold text-sm shadow-lg shadow-purple-500/30 hover:bg-purple-500 transition-colors text-center">
                   View Resume
-                </Button>
+                </button>
               </Link>
             </li>
           </ul>

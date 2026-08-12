@@ -123,32 +123,32 @@ export default function TypingPractice() {
 
         {/* Stats Bar */}
         <motion.div 
-          className="flex justify-center gap-8 mb-12 px-4"
+          className="grid grid-cols-3 gap-2 sm:gap-6 max-w-xl mx-auto mb-8 sm:mb-12 px-2 sm:px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="glass text-center p-6 rounded-2xl min-w-[140px]">
-            <div className="text-3xl md:text-4xl font-black text-purple-400 mb-1">
+          <div className="glass text-center p-3 sm:p-6 rounded-xl sm:rounded-2xl w-full">
+            <div className="text-2xl sm:text-4xl font-black text-purple-400 mb-0.5 sm:mb-1">
               {wpm}
             </div>
-            <div className="text-sm uppercase tracking-wider text-gray-400 font-semibold">
+            <div className="text-[10px] sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">
               WPM
             </div>
           </div>
-          <div className="glass text-center p-6 rounded-2xl min-w-[140px]">
-            <div className="text-3xl md:text-4xl font-black text-emerald-400 mb-1">
+          <div className="glass text-center p-3 sm:p-6 rounded-xl sm:rounded-2xl w-full">
+            <div className="text-2xl sm:text-4xl font-black text-emerald-400 mb-0.5 sm:mb-1">
               {accuracy}%
             </div>
-            <div className="text-sm uppercase tracking-wider text-gray-400 font-semibold">
+            <div className="text-[10px] sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">
               Accuracy
             </div>
           </div>
-          <div className="glass text-center p-6 rounded-2xl min-w-[140px]">
-            <div className="text-3xl md:text-4xl font-black text-blue-400 mb-1">
+          <div className="glass text-center p-3 sm:p-6 rounded-xl sm:rounded-2xl w-full">
+            <div className="text-2xl sm:text-4xl font-black text-blue-400 mb-0.5 sm:mb-1">
               {highestWpm}
             </div>
-            <div className="text-sm uppercase tracking-wider text-gray-400 font-semibold">
+            <div className="text-[10px] sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">
               Best
             </div>
           </div>

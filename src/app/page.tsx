@@ -15,35 +15,35 @@ export default function Home() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="container mx-auto lg:p-12 space-y-16"
+      className="container mx-auto px-4 sm:px-6 lg:p-12 space-y-12 sm:space-y-16 py-6 sm:py-12"
     >
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center pt-16"
+        className="text-center pt-8 sm:pt-16"
       >
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-6 drop-shadow-2xl"
+          className="text-3xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-6 drop-shadow-2xl leading-tight"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
         >
           Hi, I&apos;m <span className="text-white">{resume.name}</span>
         </motion.h1>
         <motion.p
-          className="text-xl md:text-2xl lg:text-3xl text-gray-200 max-w-3xl mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-2xl lg:text-3xl text-gray-200 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
           {resume.summary.slice(0, 120)}...
         </motion.p>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <Button asChild size="lg" variant="glass" className="glow-hover">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full max-w-xs sm:max-w-none mx-auto">
+          <Button asChild size="lg" variant="glass" className="glow-hover w-full sm:w-auto">
             <Link href="/projects">View My Work</Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="glow-hover">
+          <Button asChild size="lg" variant="outline" className="glow-hover w-full sm:w-auto">
             <Link href="/contact">Get In Touch</Link>
           </Button>
         </div>
@@ -54,10 +54,10 @@ export default function Home() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center pt-36"
+        className="text-center pt-12 sm:pt-24"
       >
         <motion.h2
-          className="text-5xl font-bold mb-16 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-xl"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-10 sm:mb-16 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-xl"
           initial={{ scale: 0.8 }}
           whileInView={{ scale: 1 }}
         >
