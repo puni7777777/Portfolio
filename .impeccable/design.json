@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-22T10:11:00Z",
+  "title": "Design System: Punith Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Avionics Cyan",
+        "canonical": "#06b6d4",
+        "tonalRamp": [
+          "#083344",
+          "#164e63",
+          "#155e75",
+          "#0e7490",
+          "#06b6d4",
+          "#22d3ee",
+          "#67e8f9",
+          "#cffafe"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Deep Plasma Purple",
+        "canonical": "#a855f7",
+        "tonalRamp": [
+          "#3b0764",
+          "#581c87",
+          "#6b21a8",
+          "#7e22ce",
+          "#9333ea",
+          "#a855f7",
+          "#c084fc",
+          "#f3e8ff"
+        ]
+      },
+      "accent-emerald": {
+        "role": "tertiary",
+        "displayName": "Telemetry Emerald",
+        "canonical": "#10b981",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#059669",
+          "#10b981",
+          "#34d399",
+          "#d1fae5"
+        ]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Obsidian Deep",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "#09090b",
+          "#121215",
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#71717a",
+          "#a1a1aa",
+          "#f4f4f5"
+        ]
+      },
+      "neutral-surface": {
+        "role": "surface",
+        "displayName": "Console Surface",
+        "canonical": "#121215",
+        "tonalRamp": [
+          "#0c0c0f",
+          "#121215",
+          "#18181d",
+          "#222228",
+          "#2c2c34",
+          "#3f3f4a",
+          "#5a5a6a",
+          "#8e8ea0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display Hero",
+        "purpose": "Hero greetings and major page headers with gradient text clip."
+      },
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Major section dividers across portfolio views."
+      },
+      "title": {
+        "displayName": "Component Title",
+        "purpose": "Card titles, role positions, and project headers."
+      },
+      "body": {
+        "displayName": "Body Prose",
+        "purpose": "Narrative copy, technical documentation, and achievement points."
+      },
+      "label": {
+        "displayName": "Telemetry Monospace",
+        "purpose": "Engineering quantities, CAD specs, and status indicators."
+      },
+      "telemetry": {
+        "displayName": "CAD Telemetry HUD",
+        "purpose": "3D viewport coordinates, ViewCube labels, and micro-metric badges."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-cyan",
+        "value": "0 0 20px rgba(6, 182, 212, 0.2)",
+        "purpose": "Diffuse hover illumination for mechanical components and CAD panels."
+      },
+      {
+        "name": "ambient-purple",
+        "value": "0 0 20px rgba(168, 85, 247, 0.2)",
+        "purpose": "Diffuse hover illumination for software and primary CTAs."
+      },
+      {
+        "name": "viewport-elevation",
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.7)",
+        "purpose": "Deep elevation grounding 3D CAD canvases and floating dialogs."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Smooth calibrated transition for button hover and card lift."
+      },
+      {
+        "name": "duration-fast",
+        "value": "200ms",
+        "purpose": "Color and border shift responses."
+      },
+      {
+        "name": "duration-standard",
+        "value": "300ms",
+        "purpose": "Card hover elevation and glow projection."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "High-priority call to action button with gradient plasma purple fill and hover glow.",
+      "html": "<button class=\"ds-btn-primary\">VIEW RESUME</button>",
+      "css": ".ds-btn-primary { background: linear-gradient(135deg, rgba(168, 85, 247, 0.8), rgba(126, 34, 206, 0.8)); color: #ffffff; padding: 10px 20px; font-size: 14px; font-weight: 600; font-family: sans-serif; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: linear-gradient(135deg, #a855f7, #9333ea); transform: translateY(-2px); box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }"
+    },
+    {
+      "name": "CAD Action Capsule",
+      "kind": "button",
+      "refersTo": "button-cad-action",
+      "description": "Technical capsule button used in CAD viewport controls and 3D mode switching.",
+      "html": "<button class=\"ds-btn-cad\">3D PAGE</button>",
+      "css": ".ds-btn-cad { background: rgba(8, 51, 68, 0.8); color: #22d3ee; padding: 8px 14px; font-size: 12px; font-weight: 600; font-family: monospace; border: 1px solid rgba(6, 182, 212, 0.4); border-radius: 10px; cursor: pointer; transition: all 0.25s ease; } .ds-btn-cad:hover { background: #0891b2; color: #ffffff; box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }"
+    },
+    {
+      "name": "Mission Control Card",
+      "kind": "card",
+      "refersTo": "card-base",
+      "description": "Translucent dark blueprint container with subtle border and ambient glow.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Technical Specification</h3><p class=\"ds-card-body\">High-voltage corona discharge liquid cooling unit.</p></div>",
+      "css": ".ds-card { background: rgba(18, 18, 21, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); backdrop-filter: blur(16px); transition: all 0.3s ease; } .ds-card:hover { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 0 25px rgba(6, 182, 212, 0.2); } .ds-card-title { color: #ffffff; font-size: 18px; font-weight: 700; margin: 0 0 8px 0; font-family: sans-serif; } .ds-card-body { color: #d4d4d8; font-size: 14px; line-height: 1.6; margin: 0; font-family: sans-serif; }"
+    },
+    {
+      "name": "Telemetry Spec Badge",
+      "kind": "chip",
+      "refersTo": "chip-telemetry",
+      "description": "High-density status chip for engineering units, tolerances, and software tags.",
+      "html": "<span class=\"ds-chip\">12kV • ±0.05 mm</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; background: rgba(6, 182, 212, 0.1); color: #67e8f9; font-size: 11px; font-family: monospace; font-weight: 600; padding: 4px 10px; border-radius: 9999px; border: 1px solid rgba(6, 182, 212, 0.25); letter-spacing: 0.05em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Mission Control Blueprint",
+    "overview": "The visual language balances the mathematical rigor of mechanical engineering documentation with the luminescent clarity of an aerospace mission control terminal. Deep obsidian and charcoal canvas surfaces are layered with glassmorphic depth, punctuated by crisp vector linework, telemetry indicators, and localized neon glows that illuminate interactive states without distracting from the underlying CAD models.",
+    "keyCharacteristics": [
+      "Obsidian Glass Foundations: Dark, multi-layered translucent surfaces with backdrop blurs maintaining high contrast against technical schematics.",
+      "Domain-Driven Chromatics: Avionics Cyan signals mechanical hardware, thermal systems, and CAD geometry; Deep Plasma Purple identifies software engineering and portfolio identity.",
+      "Restrained Telemetry Typography: Monospace font stacks for engineering specifications, CAD dimensions, and system status indicators, grounded by clean structural sans-serif headings.",
+      "Precision CAD HUDs: Floating translucent viewports with integrated AutoCAD ViewCube orientation, layer management sidebars, and real-time viewport controls."
+    ],
+    "rules": [
+      {
+        "name": "The Domain Spectrum Rule",
+        "section": "colors",
+        "body": "Never mix Cyan and Purple arbitrarily within the same component hierarchy. Mechanical systems, liquid cooling, and CAD geometry strictly use Avionics Cyan; personal identity, timeline milestones, and software tools utilize Plasma Purple."
+      },
+      {
+        "name": "The Ambient Rim Rule",
+        "section": "colors",
+        "body": "Glows and shadows must never be opaque fills. They exist as diffuse, low-opacity ambient halos that activate primarily on hover or focus to signal responsiveness."
+      },
+      {
+        "name": "The Telemetry Mono Rule",
+        "section": "typography",
+        "body": "All numerical quantities, dimensional tolerances, CAD coordinates, electrical values, and status codes must be set in monospace typography."
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "section": "elevation",
+        "body": "All surfaces rest without harsh directional drop shadows. Shadows appear as radiant glows only in response to state changes (hover, focus, or active selection)."
+      }
+    ],
+    "dos": [
+      "Do maintain strict separation between Mechanical/CAD accents (Avionics Cyan #06b6d4) and Software/Identity accents (Plasma Purple #a855f7).",
+      "Do format all engineering tolerances, coordinates, voltages, and CAD statistics in monospace typography (font-mono).",
+      "Do ensure every interactive element meets the 44px touch target minimum on mobile viewports.",
+      "Do use backdrop-blur-xl on translucent containers to maintain high contrast and legibility over canvas backgrounds.",
+      "Do preserve 1-to-1 camera synchronization on the ViewCube so that viewport rotation faithfully mirrors user gestures."
+    ],
+    "donts": [
+      "Don't use light or white theme backgrounds; the portfolio identity is strictly dark blueprint and mission control telemetry.",
+      "Don't introduce generic SaaS illustrations, bubbly pastel icons, or non-technical decorative graphics.",
+      "Don't use jarring high-frequency bounce or spring animations; motion must feel damped, calibrated, and engineering-grade.",
+      "Don't allow CAD model canvases to exceed viewport heights on mobile portrait screens.",
+      "Don't use hardcoded raw pixel widths that break mobile responsiveness on 375px screens."
+    ]
+  }
+}

@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { SectionHeading } from '@/components/ui/SectionHeading'
+import { Badge } from '@/components/ui/Badge'
 import { galleryItems } from '@/data/gallery'
 
 export default function Gallery() {
@@ -14,27 +16,11 @@ export default function Gallery() {
       animate={{ opacity: 1 }}
       className="container mx-auto p-6 lg:p-12 py-20"
     >
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-20"
-      >
-        <motion.h1 
-          className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent drop-shadow-2xl"
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-        >
-          Engineering Gallery
-        </motion.h1>
-        <motion.p 
-          className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          CAD renders, technical drawings, certifications and engineering artwork
-        </motion.p>
-      </motion.section>
+      <SectionHeading
+        title="Engineering Gallery"
+        subtitle="CAD renders, technical drawings, certifications and engineering artwork"
+        gradient="purple-blue"
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
         {galleryItems.map((item, index) => (
@@ -53,12 +39,13 @@ export default function Gallery() {
                 src={item.image}
                 alt={item.title}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute bottom-4 left-4 right-4">
-                <span className="px-3 py-1 bg-purple-500/80 backdrop-blur-sm rounded-full text-xs font-semibold text-white">
+                <Badge variant="purple" size="md">
                   {item.category}
-                </span>
+                </Badge>
               </div>
             </div>
             <div className="mt-4 text-center">
@@ -70,8 +57,10 @@ export default function Gallery() {
       </div>
 
       <div className="text-center">
-        <Button variant="glass" size="lg" className="glow-hover">
-          View All Projects →
+        <Button asChild variant="glass" size="lg" className="glow-hover">
+          <Link href="/projects">
+            View All Projects →
+          </Link>
         </Button>
       </div>
     </motion.div>

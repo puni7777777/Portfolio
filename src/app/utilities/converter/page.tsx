@@ -65,7 +65,7 @@ export default function Converter() {
         className="text-center mb-20"
       >
         <motion.h1 
-          className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent drop-shadow-2xl"
+          className="text-4xl md:text-6xl font-bold mb-6 pb-2 leading-tight bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent drop-shadow-2xl"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
         >

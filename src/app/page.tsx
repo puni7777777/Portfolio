@@ -25,7 +25,7 @@ export default function Home() {
         className="text-center pt-8 sm:pt-16"
       >
         <motion.h1
-          className="text-3xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-6 drop-shadow-2xl leading-tight"
+          className="text-3xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-6 pb-3 drop-shadow-2xl leading-tight"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
         >
@@ -57,7 +57,7 @@ export default function Home() {
         className="text-center pt-12 sm:pt-24"
       >
         <motion.h2
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-10 sm:mb-16 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-xl"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-10 sm:mb-16 pb-2 leading-tight bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-xl"
           initial={{ scale: 0.8 }}
           whileInView={{ scale: 1 }}
         >
@@ -93,7 +93,7 @@ export default function Home() {
       >
         <Card className="max-w-4xl mx-auto">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
+            className="text-3xl md:text-4xl font-bold mb-8 pb-2 leading-tight bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
             initial={{ scale: 0.9 }}
             whileInView={{ scale: 1 }}
           >
@@ -130,13 +130,13 @@ export default function Home() {
         className="text-center"
       >
         <motion.h2
-          className="text-3xl md:text-5xl font-bold mb-16 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-xl"
+          className="text-3xl md:text-5xl font-bold mb-16 pb-2 leading-tight bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-xl"
           initial={{ scale: 0.8 }}
           whileInView={{ scale: 1 }}
         >
           Featured Projects
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="h-full group grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {projects.slice(0, 6).map((project, index) => (
             <Card key={project.id} glow>
               <h3 className="text-xl font-bold text-white mb-4">

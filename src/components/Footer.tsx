@@ -7,12 +7,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           <div className="space-y-4">
-            <div className="text-3xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-2xl">
+            <div className="text-3xl font-black pb-1 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-2xl">
               PUNITH
             </div>
             <p className="text-gray-200 text-sm leading-relaxed max-w-md">
-              Mechanical Engineer | CAD Design Specialist | Precision
-              Engineering
+              Trainee Engineer | Liquid Cooling & Thermal Management Specialist |
+              Precision Engineering
             </p>
             <div className="flex gap-2 pt-4">
               <Link
@@ -58,20 +58,20 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-6 text-white">Expertise</h4>
             <div className="space-y-2 text-sm">
               <div className="text-purple-400 font-semibold mb-1">
-                CAD Software:
+                Cooling & Thermal:
               </div>
               <span className="text-gray-300">
-                SolidWorks, AutoCAD, CATIA, NX UG
+                Chilled Water, PHE, DM Water Loops, R134a
               </span>
               <div className="text-blue-400 font-semibold mt-3 mb-1">
-                Analysis:
+                CAD & Mechanical:
               </div>
-              <span className="text-gray-300">ANSYS, FEA Simulation</span>
-              <div className="text-green-400 font-semibold mt-3 mb-1">
-                Education:
+              <span className="text-gray-300">SolidWorks, AutoCAD, GD&T, DFM, CATIA</span>
+              <div className="text-emerald-400 font-semibold mt-3 mb-1">
+                Field Operations:
               </div>
               <span className="text-gray-300">
-                B.Tech Mechanical Engineering
+                PLC Controls, Shipboard Integration & Testing
               </span>
             </div>
           </div>

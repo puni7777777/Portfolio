@@ -77,7 +77,7 @@ const Header = () => {
           </Link>
 
           <Link href="/resume">
-            <button className="px-4 py-2 rounded-xl bg-purple-600/80 hover:bg-purple-600 text-white font-semibold text-sm border border-purple-400/40 shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-[1.03]">
+            <button className="px-4 py-2 rounded-xl bg-purple-600/80 hover:bg-purple-600 text-white font-semibold text-sm border border-purple-400/40 shadow-lg hover:shadow-purple-500/50 transition-all duration-200">
               View Resume
             </button>
           </Link>
@@ -85,9 +85,11 @@ const Header = () => {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-white focus:outline-none"
+          className="md:hidden p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 transition-colors"
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {isMenuOpen ? <X className="w-6 h-6 text-purple-400" /> : <Menu className="w-6 h-6 text-white" />}
         </button>
@@ -95,7 +97,10 @@ const Header = () => {
 
       {/* Mobile Navigation Drawer */}
       {isMenuOpen && (
-        <div className="md:hidden bg-zinc-950/95 border-b border-zinc-800 backdrop-blur-2xl animate-in slide-in-from-top-4 duration-200">
+        <div 
+          id="mobile-navigation" 
+          className="md:hidden bg-zinc-950/95 border-b border-zinc-800 backdrop-blur-2xl animate-in slide-in-from-top-4 duration-200"
+        >
           <ul className="flex flex-col space-y-3 p-5 font-medium text-base">
             <li>
               <Link
@@ -129,7 +134,8 @@ const Header = () => {
             <li>
               <button
                 onClick={() => setIsUtilitiesOpen(!isUtilitiesOpen)}
-                className="flex items-center justify-between w-full py-2 text-zinc-200 hover:text-purple-400"
+                aria-expanded={isUtilitiesOpen}
+                className="flex items-center justify-between w-full py-2 text-zinc-200 hover:text-purple-400 focus:outline-none focus-visible:ring-1 focus-visible:ring-purple-400 rounded px-1"
               >
                 <span>Utilities</span>
                 <ChevronDown className={`w-4 h-4 transition-transform ${isUtilitiesOpen ? "rotate-180 text-purple-400" : ""}`} />

@@ -6,52 +6,52 @@ export default function Contact() {
         <p className="text-gray-300 mb-6 text-center text-sm sm:text-base">
           Feel free to reach out to me via email or social media.
         </p>
-        <form className="flex flex-col gap-4 w-full">
+        <form className="flex flex-col gap-5 w-full">
           <div>
-            <label htmlFor="name" className="block font-medium mb-1 text-sm sm:text-base">
+            <label htmlFor="name" className="block font-medium mb-1.5 text-sm sm:text-base text-zinc-200">
               Name
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Name"
-              className="border-none bg-gray-900 p-3 rounded-lg outline-none caret-purple-500 text-purple-500 w-full text-sm sm:text-base"
+              placeholder="Your name"
+              className="w-full bg-zinc-900/90 border border-zinc-700/80 rounded-lg p-3 text-zinc-100 placeholder:text-zinc-500 text-sm sm:text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all"
               required
             />
           </div>
           <div>
-            <label htmlFor="email" className="block font-medium mb-1 text-sm sm:text-base">
+            <label htmlFor="email" className="block font-medium mb-1.5 text-sm sm:text-base text-zinc-200">
               Email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Email"
-              className="border-none bg-gray-900 p-3 rounded-lg outline-none caret-purple-500 text-purple-500 w-full text-sm sm:text-base"
+              placeholder="you@example.com"
+              className="w-full bg-zinc-900/90 border border-zinc-700/80 rounded-lg p-3 text-zinc-100 placeholder:text-zinc-500 text-sm sm:text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all"
               required
             />
           </div>
           <div>
-            <label htmlFor="message" className="block font-medium mb-1 text-sm sm:text-base">
+            <label htmlFor="message" className="block font-medium mb-1.5 text-sm sm:text-base text-zinc-200">
               Message
             </label>
             <textarea
               id="message"
               name="message"
               rows={4}
-              placeholder="Message"
-              className="border-none bg-gray-900 p-3 rounded-lg outline-none caret-purple-500 text-purple-500 resize-none w-full text-sm sm:text-base"
+              placeholder="How can I help you?"
+              className="w-full bg-zinc-900/90 border border-zinc-700/80 rounded-lg p-3 text-zinc-100 placeholder:text-zinc-500 text-sm sm:text-base resize-none focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all"
               required
             ></textarea>
           </div>
-          <div className="flex justify-center text-white font-bold">
+          <div className="flex justify-center text-white font-bold pt-2">
             <button
               type="submit"
-              className="w-full sm:w-32 bg-purple-600 rounded-full p-3 hover:bg-purple-500 transition text-sm sm:text-base cursor-pointer"
+              className="w-full justify-center bg-purple-600 rounded-full py-3 px-6 hover:bg-purple-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black transition font-semibold text-sm sm:text-base cursor-pointer shadow-lg shadow-purple-600/30"
             >
-              Send
+              Send Message
             </button>
           </div>
         </form>

@@ -7,6 +7,8 @@ import type { Project } from '@/data/types'
 import { motion } from 'framer-motion'
 import { Wrench, Code, Box } from 'lucide-react'
 import CadViewerModal from '@/components/CadViewerModal'
+import { SectionHeading } from '@/components/ui/SectionHeading'
+import { Badge } from '@/components/ui/Badge'
 
 export default function Projects() {
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null)
@@ -18,27 +20,11 @@ export default function Projects() {
       className="min-h-screen py-20 px-4 sm:px-6 lg:px-12"
     >
       {/* Header */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-10 sm:mb-20"
-      >
-        <motion.h1 
-          className="text-3xl sm:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent"
-          initial={{ scale: 0.95 }}
-          animate={{ scale: 1 }}
-        >
-          Engineering Projects
-        </motion.h1>
-        <motion.p 
-          className="text-base sm:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          Precision CAD designs, mechanical assemblies, and engineering prototypes
-        </motion.p>
-      </motion.section>
+      <SectionHeading
+        title="Engineering Projects"
+        subtitle="Precision CAD designs, mechanical assemblies, and engineering prototypes"
+        gradient="purple-indigo"
+      />
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
@@ -49,12 +35,12 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group"
+            className="h-full group"
           >
             {project.category === 'Mechanical' ? (
               /* Mechanical Engineering Project Card */
               <div 
-                className="min-h-[420px] flex flex-col bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px] bg-slate-950/60 glass-strong rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card"
+                className="h-full min-h-[420px] flex flex-col bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px] bg-slate-950/60 glass-strong rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card"
               >
                 {/* Header with Category Badge and Icon */}
                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/5">
@@ -66,9 +52,9 @@ export default function Projects() {
                       </h3>
                     </Link>
                   </div>
-                  <span className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 rounded-full text-xs font-semibold border border-cyan-500/30 backdrop-blur-sm">
+                  <Badge variant="cyan" size="md">
                     {project.category}
-                  </span>
+                  </Badge>
                 </div>
 
                 {/* Description - Truncated */}
@@ -99,9 +85,9 @@ export default function Projects() {
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2">
                     {project.tech?.slice(0, 4).map((tech, i) => (
-                      <span key={i} className="px-2 py-px bg-cyan-950/20 text-xs text-cyan-300 font-mono rounded border border-cyan-500/20">
+                      <Badge key={i} variant="cyan" size="sm" mono>
                         {tech}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
                   {/* Action Buttons */}
@@ -132,7 +118,7 @@ export default function Projects() {
             ) : (
               /* Software Project Card */
               <div
-                className="min-h-[420px] flex flex-col bg-gradient-to-br from-black/50 via-slate-900/40 to-purple-950/20 glass-strong rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card cursor-pointer"
+                className="h-full min-h-[420px] flex flex-col bg-gradient-to-br from-black/50 via-slate-900/40 to-purple-950/20 glass-strong rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-xl glow-card cursor-pointer"
               >
                 {/* Header with Category Badge and Icon */}
                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/5">
@@ -144,9 +130,9 @@ export default function Projects() {
                       </h3>
                     </Link>
                   </div>
-                  <span className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 text-purple-300 rounded-full text-xs font-semibold border border-purple-500/30 backdrop-blur-sm">
+                  <Badge variant="purple" size="md">
                     {project.category}
-                  </span>
+                  </Badge>
                 </div>
 
                 {/* Description - Truncated */}
@@ -173,9 +159,9 @@ export default function Projects() {
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2">
                     {project.tech?.slice(0, 4).map((tech, i) => (
-                      <span key={i} className="px-2 py-px bg-purple-950/20 text-xs text-purple-300 font-mono rounded border border-purple-500/20">
+                      <Badge key={i} variant="purple" size="sm" mono>
                         {tech}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
                   {/* Buttons */}

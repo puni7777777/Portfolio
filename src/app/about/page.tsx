@@ -20,7 +20,7 @@ export default function About() {
       {/* Skills Grid */}
       <section className="mb-12 sm:mb-20">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 pb-1.5 leading-tight bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
             Skills & Expertise
           </h2>
         </div>
@@ -42,7 +42,7 @@ export default function About() {
       {/* Experience Timeline */}
       <section className="mb-16 sm:mb-24">
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 pb-1.5 leading-tight bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
             Experience Timeline
           </h2>
         </div>
@@ -52,7 +52,7 @@ export default function About() {
       {/* Academic Background */}
       <section>
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 pb-1.5 leading-tight bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
             Academic Background
           </h2>
         </div>

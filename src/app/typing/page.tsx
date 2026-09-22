@@ -114,7 +114,7 @@ export default function TypingPractice() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.h1 
-          className="text-4xl md:text-6xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-2xl"
+          className="text-4xl md:text-6xl font-bold text-center mb-12 pb-2 leading-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-2xl"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
         >

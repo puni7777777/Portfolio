@@ -4,27 +4,29 @@ export const projects: Project[] = [
   {
     id: 'bladeless-fan',
     title: "Bladeless Fan using Ion Wind",
-    description: "B.Tech Major Project | Designed and prototyped a bladeless fan utilizing Ion Wind (Ion thrust) to generate airflow through high-voltage corona discharge. Optimized electrode geometries in SolidWorks and performed experimental analysis.",
+    description: "Designed, analyzed, and built an experimental bladeless airflow system harnessing corona discharge ionization to produce non-mechanical fluid propulsion. Engineered precision 3D CAD assemblies of electrode arrays in SolidWorks, analyzing structural tolerances to maintain uniform electrostatic field distribution. Fabricated an FDM 3D-printed enclosure with high-voltage step-up circuitry.",
     link: "",
     category: "Mechanical",
     modelUrl: "/models/bladeless-fan.stl",
     models: [
-      { name: "3D Mesh (STL)", url: "/models/bladeless-fan.stl" },
+      { name: "Bladeless Fan (3D Mesh .STL)", url: "/models/bladeless-fan.stl" },
+      // { name: "Bladeless Fan (Native STEP Assembly .step)", url: "/models/bladeless-fan.step" },
+      // { name: "Sample AutoCAD Drawing (2D/3D .dxf)", url: "/models/sample-drawing.dxf" },
     ],
-    tech: ["SolidWorks", "ANSYS", "CAD", "Prototyping"],
+    tech: ["SolidWorks", "ANSYS", "CAD", "Prototyping", "High Voltage"],
     designProcess: [
-      "Electrode geometry optimization",
-      "High voltage corona discharge analysis",
-      "Flow field simulation in ANSYS",
-      "Prototype fabrication and testing",
-      "Performance optimization iteration"
+      "Electrode array geometry optimization & tolerance analysis",
+      "High voltage corona discharge & electrostatic field modeling",
+      "Flow field simulation and CFD analysis in ANSYS",
+      "Modular enclosure fabrication using FDM 3D printing",
+      "Voltage-to-airflow performance curve mapping & optimization"
     ],
     software: ["SolidWorks", "ANSYS Fluent", "MATLAB"],
     specs: [
       { label: "Voltage", value: "12kV" },
-      { label: "Electrode Gap", value: "2.5" },
+      { label: "Electrode Gap", value: "2.5 mm" },
       { label: "Material", value: "3D printed PLA" },
-      { label: "Power", value: "25" }
+      { label: "Power", value: "25 W" }
     ],
     performance: [
       { label: "Max Airflow", value: "3.2", unit: "m/s" },
@@ -32,6 +34,34 @@ export const projects: Project[] = [
       { label: "Efficiency", value: "82", unit: "%" },
       { label: "Noise Level", value: "28", unit: "dB" },
       { label: "Power Draw", value: "25", unit: "W" }
+    ]
+  },
+  {
+    id: 'pet-filament-extruder',
+    title: "Automated PET Filament Extruder & Spooling System",
+    description: "Designed and built an automated recycling system to convert waste PET plastic bottles into continuous, usable 3D printing filament using a custom thermal pultrusion mechanism. Engineered bottle-stripping cutter, gear-driven spooler, closed-loop Arduino temperature regulation, and synchronized motor torque modulation.",
+    link: "",
+    category: "Mechanical",
+    tech: ["SolidWorks", "Arduino", "Thermal Pultrusion", "Motor Controls", "Recycling Tech"],
+    designProcess: [
+      "Thermal pultrusion nozzle & mechanism design in SolidWorks",
+      "Precision bottle-stripping cutter engineering",
+      "Motorized, gear-driven spooling & tensioning mechanism",
+      "Closed-loop PID temperature regulation via Arduino & thermistor",
+      "Extrusion rate and spooling torque synchronization calibration"
+    ],
+    software: ["SolidWorks", "Arduino IDE", "KiCAD"],
+    specs: [
+      { label: "Input Material", value: "Waste PET Bottles" },
+      { label: "Filament Output", value: "1.75 mm" },
+      { label: "Temperature Control", value: "Arduino PID Closed-Loop" },
+      { label: "Spooling", value: "Gear-Driven Motorized" }
+    ],
+    performance: [
+      { label: "Diameter Consistency", value: "±0.05", unit: "mm" },
+      { label: "Extrusion Temp", value: "220", unit: "°C" },
+      { label: "Recycling Yield", value: "85", unit: "%" },
+      { label: "Spooling Speed", value: "12", unit: "rpm" }
     ]
   },
   {

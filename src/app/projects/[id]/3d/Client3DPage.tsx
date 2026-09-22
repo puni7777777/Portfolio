@@ -76,7 +76,7 @@ export default function Client3DPage({ id }: Client3DPageProps) {
               {modelUrl}
             </code>
           </div>
-          <span className="text-[11px] text-zinc-500 hidden sm:inline">Formats: .STL, .OBJ, .GLB, .STEP</span>
+          <span className="text-xs text-zinc-500 hidden sm:inline">Formats: .STL, .OBJ, .GLB, .STEP</span>
         </div> */}
 
         {/* Main 3D CAD Viewport */}

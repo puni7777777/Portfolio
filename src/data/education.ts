@@ -2,7 +2,7 @@ import type { Education } from './types'
 
 export const education: Education[] = [
   {
-    school: 'JNTUH-UCES',
+    school: 'JNTUH UNIVERSITY COLLEGE OF ENGINEERING SULTANPUR',
     location: 'Sangareddy, Telangana',
     degree: 'Bachelor of Technology in Mechanical Engineering',
     gpa: '6.9/10.0',
@@ -23,4 +23,3 @@ export const education: Education[] = [
     year: '2018'
   }
 ]
-

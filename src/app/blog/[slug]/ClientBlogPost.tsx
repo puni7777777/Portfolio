@@ -50,7 +50,7 @@ export default function ClientBlogPost({ slug }: ClientBlogPostProps) {
           </div>
           
           <motion.h1 
-            className="text-4xl lg:text-5xl font-bold mb-8 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight"
+            className="text-4xl lg:text-5xl font-bold mb-8 pb-2 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight"
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
           >

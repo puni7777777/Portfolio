@@ -61,7 +61,7 @@ export default function ClientProjectPage({ id }: ProjectPageProps) {
             <ProjectIcon className={`w-10 h-10 sm:w-12 sm:h-12 ${theme.text} animate-pulse`} />
           </div>
           <motion.h1 
-            className={`text-2xl sm:text-4xl md:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r ${theme.gradientText} bg-clip-text text-transparent`}
+            className={`text-2xl sm:text-4xl md:text-6xl font-bold mb-6 sm:mb-8 pb-2 leading-tight bg-gradient-to-r ${theme.gradientText} bg-clip-text text-transparent`}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
           >

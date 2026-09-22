@@ -8,6 +8,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { extractCadBufferGeometry } from "@/utils/cadTriangleExtractor";
 import { loadNativeStepModel } from "@/utils/stepLoader";
+import { loadDxfModel } from "@/utils/dxfLoader";
 
 /**
  * Embedded AutoCAD-style 3D ViewCube Widget
@@ -155,19 +156,30 @@ function EmbeddedViewCube({ cameraRef, controlsRef }) {
   };
 
   return (
-    <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex flex-col items-center gap-1 bg-zinc-950/85 p-1.5 sm:p-2 rounded-2xl border border-zinc-800/80 backdrop-blur-md shadow-2xl select-none font-mono text-[9px] sm:text-[10px] scale-75 sm:scale-100 origin-top-right">
-      <div ref={cubeMountRef} className="w-27.5 h-27.5 cursor-pointer" />
+    <div 
+      className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 flex flex-col items-center gap-1.5 bg-zinc-950/90 p-2 sm:p-2.5 rounded-2xl border border-zinc-800/90 backdrop-blur-md shadow-2xl select-none font-mono text-[10px] sm:text-xs scale-90 sm:scale-100 origin-top-right"
+      role="region"
+      aria-label="3D Viewport Orientation Controls"
+    >
+      <div 
+        ref={cubeMountRef} 
+        className="w-27.5 h-27.5 cursor-pointer touch-none" 
+        role="img" 
+        aria-label="Interactive 3D Orientation ViewCube" 
+      />
       {activeFace && (
-        <div className="text-[10px] font-bold text-cyan-400 animate-in fade-in">
+        <div className="text-[10px] font-bold text-cyan-400 animate-in fade-in" aria-live="polite">
           {activeFace} VIEW
         </div>
       )}
-      <div className="grid grid-cols-3 gap-1 pt-1 border-t border-zinc-800/80 w-full text-center">
+      <div className="grid grid-cols-3 gap-1 pt-1.5 border-t border-zinc-800/80 w-full text-center">
         {["TOP", "FRONT", "RIGHT", "LEFT", "BACK", "ISOMETRIC"].map((view) => (
           <button
             key={view}
+            type="button"
             onClick={() => snapToView(view)}
-            className="px-1 py-0.5 rounded bg-zinc-900 hover:bg-cyan-950 hover:text-cyan-300 text-zinc-400 border border-zinc-800 transition-colors"
+            aria-label={`Snap camera to ${view.toLowerCase()} view`}
+            className="min-h-[32px] sm:min-h-[26px] min-w-[32px] px-1.5 py-1 rounded bg-zinc-900/90 hover:bg-cyan-950 hover:text-cyan-100 hover:border-cyan-500/50 text-cyan-300/80 border border-zinc-800 transition-colors touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 flex items-center justify-center font-medium"
           >
             {view === "ISOMETRIC" ? "ISO" : view}
           </button>
@@ -201,14 +213,23 @@ export default function StandaloneCadViewer({
   const controlsRef = useRef(null);
   const meshGroupRef = useRef(null);
 
-  // Normalize input models list or single model
+  // Default list of all uploaded CAD/3D files in the repository
+  const REPO_MODELS = useMemo(() => [
+    { name: "Bladeless Fan (3D Mesh .STL)", url: "/models/bladeless-fan.stl" },
+    { name: "Bladeless Fan (Native STEP Assembly .step)", url: "/models/bladeless-fan.step" },
+    { name: "Sample AutoCAD Drawing (2D/3D .dxf)", url: "/models/sample-drawing.dxf" },
+  ], []);
+
+  // Normalize input models list or default to all uploaded repository models
   const availableModels = useMemo(() => {
     if (models && models.length > 0) return models;
     if (modelUrl || modelFile) {
-      return [{ name: modelName, url: modelUrl, file: modelFile }];
+      const primary = { name: modelName, url: modelUrl, file: modelFile };
+      const exists = REPO_MODELS.some(m => m.url === modelUrl);
+      return exists ? REPO_MODELS : [primary, ...REPO_MODELS];
     }
-    return [];
-  }, [models, modelUrl, modelFile, modelName]);
+    return REPO_MODELS;
+  }, [models, modelUrl, modelFile, modelName, REPO_MODELS]);
 
   const [selectedModelIndex, setSelectedModelIndex] = useState(0);
 
@@ -220,6 +241,20 @@ export default function StandaloneCadViewer({
   const [showGrid, setShowGrid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [dxfLayers, setDxfLayers] = useState([]);
+
+  const toggleDxfLayer = (layerName) => {
+    setDxfLayers((prev) =>
+      prev.map((layer) => {
+        if (layer.name === layerName) {
+          const nextVisible = !layer.visible;
+          layer.group.visible = nextVisible;
+          return { ...layer, visible: nextVisible };
+        }
+        return layer;
+      })
+    );
+  };
 
   const autoRotateRef = useRef(autoRotate);
   useEffect(() => {
@@ -548,6 +583,29 @@ export default function StandaloneCadViewer({
           setIsLoading(false);
         });
     }
+    // 3. DXF 2D/3D Drawing Loader (AutoCAD DXF Format)
+    else if (lowerName.endsWith(".dxf")) {
+      setDxfLayers([]);
+      fetch(targetUrl)
+        .then((res) => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to load DXF CAD drawing`);
+          return res.text();
+        })
+        .then((text) => {
+          if (isCancelled) return;
+          const { group: dxfGroup, layers } = loadDxfModel(text);
+          setDxfLayers(layers);
+
+          fitMeshGroupToViewport(dxfGroup);
+          setSingleMeshInGroup(dxfGroup);
+        })
+        .catch((err) => {
+          if (isCancelled) return;
+          console.error("DXF CAD load error:", err);
+          setErrorMessage(`Unable to parse DXF drawing: ${err.message}`);
+          setIsLoading(false);
+        });
+    }
     // 2. GLB / GLTF Loader
     else if (lowerName.endsWith(".glb") || lowerName.endsWith(".gltf")) {
       const loader = new GLTFLoader();
@@ -640,7 +698,7 @@ export default function StandaloneCadViewer({
         {/* Viewport Render Options */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Display Mode Selector */}
-          <div className="flex rounded-lg bg-zinc-950 border border-zinc-800 p-1 text-[11px]">
+          <div className="flex rounded-lg bg-zinc-950 border border-zinc-800 p-1 text-xs">
             {[
               { id: "shadedWithEdges", label: "Shaded w/ Edges 📐" },
               { id: "shaded", label: "Shaded 🎨" },
@@ -661,7 +719,7 @@ export default function StandaloneCadViewer({
           </div>
 
           {/* Material Selector */}
-          <div className="flex rounded-lg bg-zinc-950 border border-zinc-800 p-1 text-[11px]">
+          <div className="flex rounded-lg bg-zinc-950 border border-zinc-800 p-1 text-xs">
             {[
               { id: "metallic", label: "Chrome" },
               { id: "fuchsia", label: "Fuchsia" },
@@ -723,6 +781,38 @@ export default function StandaloneCadViewer({
       >
         <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
+        {/* AutoCAD Layer Control Sidebar (DXF Drawings) */}
+        {/* {dxfLayers && dxfLayers.length > 0 && (
+          <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5 p-3 rounded-2xl bg-zinc-950/85 border border-zinc-800/80 backdrop-blur-md shadow-2xl font-mono text-xs max-w-[200px] sm:max-w-[240px]">
+            <div className="text-xs font-bold text-cyan-400 flex items-center justify-between border-b border-zinc-800 pb-1.5 mb-1">
+              <span>📋 AutoCAD Layers</span>
+              <span className="text-[10px] text-zinc-500 font-normal">{dxfLayers.length} layers</span>
+            </div>
+            <div className="max-h-48 overflow-y-auto space-y-1.5 pr-1 text-xs">
+              {dxfLayers.map((layer) => (
+                <button
+                  key={layer.name}
+                  onClick={() => toggleDxfLayer(layer.name)}
+                  className={`w-full flex items-center justify-between px-2 py-1 rounded-lg border transition-all text-left ${
+                    layer.visible
+                      ? "bg-zinc-900 border-zinc-700 text-zinc-200"
+                      : "bg-zinc-950/60 border-zinc-900 text-zinc-600 line-through"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 truncate">
+                    <span
+                      className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: `#${layer.colorHex.toString(16).padStart(6, "0")}` }}
+                    />
+                    <span className="truncate">{layer.name}</span>
+                  </div>
+                  <span className="text-[10px] font-bold ml-1">{layer.visible ? "ON" : "OFF"}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )} */}
+
         {/* AutoCAD ViewCube Widget */}
         <EmbeddedViewCube cameraRef={cameraRef} controlsRef={controlsRef} />
 
@@ -746,8 +836,8 @@ export default function StandaloneCadViewer({
         )}
 
         {/* Floating Controls Overlay */}
-        <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 p-2.5 sm:p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 backdrop-blur-md text-[10px] sm:text-[11px] font-mono text-zinc-400 space-y-0.5 sm:space-y-1 pointer-events-none select-none max-w-[200px] sm:max-w-none">
-          <div className="text-white font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">
+        <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 p-2.5 sm:p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80 backdrop-blur-md text-[10px] sm:text-xs font-mono text-zinc-400 space-y-0.5 sm:space-y-1 pointer-events-none select-none max-w-[200px] sm:max-w-none">
+          <div className="text-white font-bold flex items-center gap-1.5 text-xs">
             <span className="text-cyan-400">👋 3D Controls:</span>
           </div>
           <div className="hidden sm:block">Left Click + Drag: Rotate 360°</div>
