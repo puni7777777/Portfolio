@@ -43,4 +43,10 @@ next-env.d.ts
 #ubuntu-server
 /ubuntu-server
 
+#todo file
 TODO.md
+PRODUCT.md
+DESIGN.md
+
+#impeccable
+.impeccable*
